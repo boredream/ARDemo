@@ -55,6 +55,17 @@ struct ARViewContainer: UIViewRepresentable {
     
     func makeUIView(context: Context) -> ARView {
         let arView = FocusARView(frame: .zero)
+        
+        // debug模式显示AR识别信息
+        arView.debugOptions = [
+            // .showPhysics, // 绘制碰撞器（包围盒）和所有刚体
+            // .showStatistics, // 显示性能统计信息
+            // .showAnchorOrigins, // 显示ARAnchor位置
+            // .showAnchorGeometry, // 显示ARAnchor的几何形状
+            .showWorldOrigin, // 显示世界坐标系原点位置和坐标轴
+            // .showFeaturePoints // 显示特征点云
+        ]
+        
         arView.addCoaching()
         return arView
     }
@@ -77,7 +88,7 @@ struct ARViewContainer: UIViewRepresentable {
     }
 }
 
-extension FocusARView: ARCoachingOverlayViewDelegate{
+extension FocusARView: ARCoachingOverlayViewDelegate {
     func addCoaching() {
         let coachingOverlay = ARCoachingOverlayView()
         coachingOverlay.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -85,25 +96,6 @@ extension FocusARView: ARCoachingOverlayViewDelegate{
         coachingOverlay.session = self.session
         coachingOverlay.delegate = self
         self.addSubview(coachingOverlay)
-    }
-    
-    public func coachingOverlayViewDidDeactivate(_ coachingOverlayView: ARCoachingOverlayView) {
-        self.placeBox()
-    }
-    
-    @objc func placeBox(){
-        let boxMesh = MeshResource.generateBox(size: 0.15)
-        var boxMaterial = SimpleMaterial(color:.white,isMetallic: false)
-        let planeAnchor = AnchorEntity(plane:.horizontal)
-        do {
-            boxMaterial.baseColor = try .texture(.load(named: "Box_Texture.jpg"))
-            boxMaterial.tintColor = UIColor.white.withAlphaComponent(0.9999)
-            let boxEntity  = ModelEntity(mesh:boxMesh,materials:[boxMaterial])
-            planeAnchor.addChild(boxEntity)
-            self.scene.addAnchor(planeAnchor)
-        } catch {
-            print("找不到文件")
-        }
     }
 }
 
