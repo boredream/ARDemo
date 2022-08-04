@@ -11,6 +11,7 @@ import Combine
 import ARKit
 
 class FocusARView: ARView {
+    
   enum FocusStyleChoices {
     case classic
     case material
@@ -86,3 +87,4 @@ extension FocusARView: FocusEntityDelegate {
     print("initializing")
   }
 }
+

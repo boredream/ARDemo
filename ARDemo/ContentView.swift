@@ -54,7 +54,8 @@ struct ARViewContainer: UIViewRepresentable {
     @Binding var confirmModel: Model?
     
     func makeUIView(context: Context) -> ARView {
-        let arView = FocusARView(frame: .zero) //ARView(frame: .zero)
+        let arView = FocusARView(frame: .zero)
+        arView.addCoaching()
         return arView
     }
     
@@ -74,7 +75,36 @@ struct ARViewContainer: UIViewRepresentable {
             }
         }
     }
+}
+
+extension FocusARView: ARCoachingOverlayViewDelegate{
+    func addCoaching() {
+        let coachingOverlay = ARCoachingOverlayView()
+        coachingOverlay.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        coachingOverlay.goal = .horizontalPlane
+        coachingOverlay.session = self.session
+        coachingOverlay.delegate = self
+        self.addSubview(coachingOverlay)
+    }
     
+    public func coachingOverlayViewDidDeactivate(_ coachingOverlayView: ARCoachingOverlayView) {
+        self.placeBox()
+    }
+    
+    @objc func placeBox(){
+        let boxMesh = MeshResource.generateBox(size: 0.15)
+        var boxMaterial = SimpleMaterial(color:.white,isMetallic: false)
+        let planeAnchor = AnchorEntity(plane:.horizontal)
+        do {
+            boxMaterial.baseColor = try .texture(.load(named: "Box_Texture.jpg"))
+            boxMaterial.tintColor = UIColor.white.withAlphaComponent(0.9999)
+            let boxEntity  = ModelEntity(mesh:boxMesh,materials:[boxMaterial])
+            planeAnchor.addChild(boxEntity)
+            self.scene.addAnchor(planeAnchor)
+        } catch {
+            print("找不到文件")
+        }
+    }
 }
 
 struct ModelPickerView: View {
