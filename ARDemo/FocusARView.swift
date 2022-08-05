@@ -60,10 +60,18 @@ class FocusARView: ARView {
         let anchor = AnchorEntity()
         self.scene.anchors.append(anchor)
         
-        let mesh = MeshResource.generateBox(size: 0.1) // 单位米
+        // 立方体
+//        let mesh = MeshResource.generateBox(size: 0.1) // 单位米
+//        let material = SimpleMaterial(color: .red, isMetallic: false)
+//        let entity = ModelEntity(mesh: mesh, materials: [material])
+        
+        let text = MeshResource.generateText( "Hello", extrusionDepth: 0.01,
+                                              font: .systemFont(ofSize: 0.1, weight: .bold))
         let material = SimpleMaterial(color: .red, isMetallic: false)
-        let entity = ModelEntity(mesh: mesh, materials: [material])
+        let entity = ModelEntity(mesh: text, materials: [material])
         entity.position = focusEntity.position
+        entity.transform.rotation = simd_quatf(angle: -Float.pi/2, axis: [1, 0, 0])
+        
         anchor.addChild(entity)
     }
     
