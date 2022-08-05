@@ -21,11 +21,11 @@ class Model {
         self.cancellable = ModelEntity.loadModelAsync(named: filename)
             .sink(receiveCompletion: { loadCompletion in
                 // 处理失败
-                print("DEBUG: unable to load modelEntity \(self.modelName)")
+                print("DDD: unable to load modelEntity \(self.modelName)")
             }, receiveValue: { modelEntitiy in
                 // 获取成功
                 self.modelEntitiy = modelEntitiy
-                print("DEBUG: successfully to load modelEntity \(self.modelName)")
+                print("DDD: successfully to load modelEntity \(self.modelName)")
             })
     }
     

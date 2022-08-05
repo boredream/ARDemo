@@ -41,12 +41,30 @@ class FocusARView: ARView {
                 )
             } catch {
                 self.focusEntity = FocusEntity(on: self, focus: .classic)
-                print("Unable to load plane textures")
+                print("DDD: Unable to load plane textures")
                 print(error.localizedDescription)
             }
         default:
             self.focusEntity = FocusEntity(on: self, focus: .classic)
         }
+        
+        addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapFocusEntity)))
+    }
+    
+    @objc func tapFocusEntity() {
+        print("DDD: tap focus entity")
+        guard let focusEntity = self.focusEntity else {
+            return
+        }
+        
+        let anchor = AnchorEntity()
+        self.scene.anchors.append(anchor)
+        
+        let mesh = MeshResource.generateBox(size: 0.1) // 单位米
+        let material = SimpleMaterial(color: .red, isMetallic: false)
+        let entity = ModelEntity(mesh: mesh, materials: [material])
+        entity.position = focusEntity.position
+        anchor.addChild(entity)
     }
     
     func setupConfig() {
@@ -57,13 +75,13 @@ class FocusARView: ARView {
         config.environmentTexturing = .automatic
         // 判断设备是否支持配置
         if ARWorldTrackingConfiguration.supportsSceneReconstruction(.mesh) {
-            print("DEBUG: supportsSceneReconstruction")
+            print("DDD: supportsSceneReconstruction")
             config.sceneReconstruction = .mesh
         }
         
         // 深度检测
         if type(of: config).supportsFrameSemantics(.sceneDepth) {
-            print("DEBUG: supportsFrameSemantics")
+            print("DDD: supportsFrameSemantics")
             config.frameSemantics = .sceneDepth;
         }
         
@@ -77,10 +95,10 @@ class FocusARView: ARView {
 
 extension FocusARView: FocusEntityDelegate {
     func toTrackingState() {
-        print("tracking")
+        print("DDD: tracking")
     }
     func toInitializingState() {
-        print("initializing")
+        print("DDD: initializing")
     }
 }
 
