@@ -60,21 +60,25 @@ class FocusARView: ARView {
         let anchor = AnchorEntity()
         self.scene.anchors.append(anchor)
         
-        // 文字
-        let textMesh = MeshResource.generateText( "Hello", extrusionDepth: 0.005,
-                                                  font: .systemFont(ofSize: 0.1, weight: .bold),
-                                                  alignment: .left)
-        let textMaterial = SimpleMaterial(color: .red, isMetallic: false)
-        let textEntity = ModelEntity(mesh: textMesh, materials: [textMaterial])
-        textEntity.position = focusEntity.position
-        textEntity.transform.rotation = simd_quatf(angle: -Float.pi/2, axis: [1, 0, 0])
-        anchor.addChild(textEntity)
+        print("DDD: focus entity transform = \(focusEntity.transform)")
         
-        // 卡片
-        let boxMesh = MeshResource.generateBox(width: 0.4, height: 0.002, depth: 0.2, cornerRadius: 0.001)
+        // 卡片Box
+        let boxMesh = MeshResource.generateBox(width: 0.04, height: 0.04, depth: 0.002)
         let boxMaterial = SimpleMaterial(color: .white, isMetallic: false)
         let boxEntity = ModelEntity(mesh: boxMesh, materials: [boxMaterial])
         boxEntity.position = focusEntity.position
+        // 如何只修改x轴rotate
+        // boxEntity.transform.rotation = focusEntity.transform.rotation
+        boxEntity.transform.rotation = simd_quatf(angle: -Float.pi / 2, axis: SIMD3<Float>(1,0,0))
+        
+        // 文字
+        let textMesh = MeshResource.generateText( "Hello", extrusionDepth: 0.005,
+                                                  font: .systemFont(ofSize: 0.01, weight: .bold),
+                                                  alignment: .left)
+        let textMaterial = SimpleMaterial(color: .red, isMetallic: false)
+        let textEntity = ModelEntity(mesh: textMesh, materials: [textMaterial])
+        boxEntity.addChild(textEntity)
+
         anchor.addChild(boxEntity)
     }
     
