@@ -54,19 +54,10 @@ struct ARViewContainer: UIViewRepresentable {
     @Binding var confirmModel: Model?
     
     func makeUIView(context: Context) -> ARView {
-        let arView = FocusARView(frame: .zero)
-        
-        // debug模式显示AR识别信息
-//        arView.debugOptions = [
-            // .showPhysics, // 绘制碰撞器（包围盒）和所有刚体
-            // .showStatistics, // 显示性能统计信息
-            // .showAnchorOrigins, // 显示ARAnchor位置
-            // .showAnchorGeometry, // 显示ARAnchor的几何形状
-//            .showWorldOrigin, // 显示世界坐标系原点位置和坐标轴
-            // .showFeaturePoints // 显示特征点云
-//        ]
-        
+        let arView = BoreArView(frame: .zero)
         arView.addCoaching()
+        arView.addFocusEntity()
+        arView.setupGesture()
         return arView
     }
     
@@ -85,17 +76,6 @@ struct ARViewContainer: UIViewRepresentable {
                 self.confirmModel = nil
             }
         }
-    }
-}
-
-extension FocusARView: ARCoachingOverlayViewDelegate {
-    func addCoaching() {
-        let coachingOverlay = ARCoachingOverlayView()
-        coachingOverlay.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        coachingOverlay.goal = .horizontalPlane
-        coachingOverlay.session = self.session
-        coachingOverlay.delegate = self
-        self.addSubview(coachingOverlay)
     }
 }
 

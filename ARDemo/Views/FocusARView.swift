@@ -21,6 +21,7 @@ class FocusARView: ARView {
     /// Style to be displayed in the example
     let focusStyle: FocusStyleChoices = .classic
     var focusEntity: FocusEntity?
+    
     required init(frame frameRect: CGRect) {
         super.init(frame: frameRect)
         self.setupConfig()
@@ -48,7 +49,7 @@ class FocusARView: ARView {
             self.focusEntity = FocusEntity(on: self, focus: .classic)
         }
         
-        addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapFocusEntity)))
+//        addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapFocusEntity)))
     }
     
     @objc func tapFocusEntity() {
@@ -85,7 +86,7 @@ class FocusARView: ARView {
     func setupConfig() {
         let config = ARWorldTrackingConfiguration()
         // 平面探测
-        config.planeDetection = [.horizontal, .vertical]
+        config.planeDetection = [.horizontal]
         // 环境纹理
         config.environmentTexturing = .automatic
         // 判断设备是否支持配置
