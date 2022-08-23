@@ -66,7 +66,12 @@ struct ARViewContainer: UIViewRepresentable {
             if let modelEntity = model.modelEntitiy {
                 print("DDD: adding model to scene \(model.modelName)")
                 let anchorEntity = AnchorEntity(plane: .any)
-                anchorEntity.addChild(modelEntity.clone(recursive: true))
+                
+//                let appendModelEntity = modelEntity.clone(recursive: true)
+                let appendModelEntity = SignEntity()
+                anchorEntity.addChild(appendModelEntity)
+                
+                uiView.installGestures(for: appendModelEntity)
                 uiView.scene.addAnchor(anchorEntity)
             } else {
                 print("DDD: unable load modelEntity \(model.modelName)")

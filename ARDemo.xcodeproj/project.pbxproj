@@ -20,6 +20,7 @@
 		2BBAB8C228B4BBF1001694F3 /* BoreArView+Coaching.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBAB8C128B4BBF1001694F3 /* BoreArView+Coaching.swift */; };
 		2BBAB8C428B4BC36001694F3 /* BoreArView+Gesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBAB8C328B4BC36001694F3 /* BoreArView+Gesture.swift */; };
 		2BBAB8C628B4BF09001694F3 /* BoreArView+FocusEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBAB8C528B4BF09001694F3 /* BoreArView+FocusEntity.swift */; };
+		2BBAB8C928B4D001001694F3 /* SignEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBAB8C828B4D001001694F3 /* SignEntity.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		2BBAB8C128B4BBF1001694F3 /* BoreArView+Coaching.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BoreArView+Coaching.swift"; sourceTree = "<group>"; };
 		2BBAB8C328B4BC36001694F3 /* BoreArView+Gesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BoreArView+Gesture.swift"; sourceTree = "<group>"; };
 		2BBAB8C528B4BF09001694F3 /* BoreArView+FocusEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BoreArView+FocusEntity.swift"; sourceTree = "<group>"; };
+		2BBAB8C828B4D001001694F3 /* SignEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignEntity.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				2BB2D74428A39F0500390CA4 /* Views */,
+				2BBAB8C728B4CFD4001694F3 /* ARClasses */,
 				2BB01356289927950014773A /* models */,
 				2B1FE5072893E8320095457E /* AppDelegate.swift */,
 				2B1FE5092893E8320095457E /* ContentView.swift */,
@@ -111,6 +114,14 @@
 				2BBAB8C528B4BF09001694F3 /* BoreArView+FocusEntity.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		2BBAB8C728B4CFD4001694F3 /* ARClasses */ = {
+			isa = PBXGroup;
+			children = (
+				2BBAB8C828B4D001001694F3 /* SignEntity.swift */,
+			);
+			path = ARClasses;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -192,6 +203,7 @@
 			files = (
 				2B85E805289A53BA003D4F92 /* Model.swift in Sources */,
 				2B1FE50A2893E8320095457E /* ContentView.swift in Sources */,
+				2BBAB8C928B4D001001694F3 /* SignEntity.swift in Sources */,
 				2B7BF463289A5EDF00633AB7 /* FocusARView.swift in Sources */,
 				2BBAB8C428B4BC36001694F3 /* BoreArView+Gesture.swift in Sources */,
 				2BBAB8C228B4BBF1001694F3 /* BoreArView+Coaching.swift in Sources */,
