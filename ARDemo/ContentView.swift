@@ -14,6 +14,7 @@ struct ContentView : View {
     @State private var isPlacementEnable = false
     @State private var selectModel: Model?
     @State private var confirmModel: Model?
+    @State private var selectSignEntity: SignEntity?
     
     private var models: [Model] = {
         let filenamager = FileManager.default
@@ -34,51 +35,17 @@ struct ContentView : View {
       
     var body: some View {
         ZStack(alignment: .bottom) {
-            ARViewContainer(confirmModel: self.$confirmModel)
+            ARViewContainer(confirmModel: $confirmModel, selectModel: $selectSignEntity)
             if self.isPlacementEnable {
                 PlacementButtonView(
-                    isPlacementEnable: self.$isPlacementEnable,
-                    selectModel: self.$selectModel,
-                    confirmModel: self.$confirmModel)
+                    isPlacementEnable: $isPlacementEnable,
+                    selectModel: $selectModel,
+                    confirmModel: $confirmModel)
             } else {
                 ModelPickerView(
-                    isPlacementEnable: self.$isPlacementEnable,
-                    selectModel: self.$selectModel,
-                    models: self.models)
-            }
-        }
-    }
-}
-
-struct ARViewContainer: UIViewRepresentable {
-    @Binding var confirmModel: Model?
-    
-    func makeUIView(context: Context) -> ARView {
-        let arView = BoreArView(frame: .zero)
-        arView.addCoaching()
-        arView.addFocusEntity()
-        arView.setupGesture()
-        return arView
-    }
-    
-    func updateUIView(_ uiView: ARView, context: Context) {
-        if let model = self.confirmModel {
-            if let modelEntity = model.modelEntitiy {
-                print("DDD: adding model to scene \(model.modelName)")
-                let anchorEntity = AnchorEntity(plane: .any)
-                
-//                let appendModelEntity = modelEntity.clone(recursive: true)
-                let appendModelEntity = SignEntity()
-                anchorEntity.addChild(appendModelEntity)
-                
-                uiView.installGestures(for: appendModelEntity)
-                uiView.scene.addAnchor(anchorEntity)
-            } else {
-                print("DDD: unable load modelEntity \(model.modelName)")
-            }
-            
-            DispatchQueue.main.async {
-                self.confirmModel = nil
+                    isPlacementEnable: $isPlacementEnable,
+                    selectModel: $selectModel,
+                    models: models)
             }
         }
     }

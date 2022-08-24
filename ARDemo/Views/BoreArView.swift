@@ -13,6 +13,8 @@ import ARKit
 
 class BoreArView: ARView {
     
+    var delegate: BoreArViewDelegate?
+    
     required init(frame frameRect: CGRect) {
         super.init(frame: frameRect)
         

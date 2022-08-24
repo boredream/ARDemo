@@ -15,6 +15,9 @@
 		2B7BF463289A5EDF00633AB7 /* FocusARView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7BF462289A5EDF00633AB7 /* FocusARView.swift */; };
 		2B8283D0289A14DE00C14B63 /* toy_drummer.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 2B8283CF289A14DE00C14B63 /* toy_drummer.usdz */; };
 		2B85E805289A53BA003D4F92 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B85E804289A53BA003D4F92 /* Model.swift */; };
+		2BAF555428B5D05A008DDC3C /* ARViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BAF555328B5D05A008DDC3C /* ARViewContainer.swift */; };
+		2BAF555628B5D0F4008DDC3C /* ARViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BAF555528B5D0F4008DDC3C /* ARViewCoordinator.swift */; };
+		2BAF555828B5D838008DDC3C /* BoreArViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BAF555728B5D838008DDC3C /* BoreArViewDelegate.swift */; };
 		2BB01358289927D00014773A /* toy_biplane.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 2BB01357289927D00014773A /* toy_biplane.usdz */; };
 		2BBAB8C028B4BB09001694F3 /* BoreArView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBAB8BF28B4BB09001694F3 /* BoreArView.swift */; };
 		2BBAB8C228B4BBF1001694F3 /* BoreArView+Coaching.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBAB8C128B4BBF1001694F3 /* BoreArView+Coaching.swift */; };
@@ -34,6 +37,9 @@
 		2B7BF464289A80C300633AB7 /* AR会话 1.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; name = "AR会话 1.mov"; path = "../../../../Desktop/AR/AR会话 1.mov"; sourceTree = "<group>"; };
 		2B8283CF289A14DE00C14B63 /* toy_drummer.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; name = toy_drummer.usdz; path = ../../../../../../Downloads/toy_drummer.usdz; sourceTree = "<group>"; };
 		2B85E804289A53BA003D4F92 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		2BAF555328B5D05A008DDC3C /* ARViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewContainer.swift; sourceTree = "<group>"; };
+		2BAF555528B5D0F4008DDC3C /* ARViewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewCoordinator.swift; sourceTree = "<group>"; };
+		2BAF555728B5D838008DDC3C /* BoreArViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoreArViewDelegate.swift; sourceTree = "<group>"; };
 		2BB01357289927D00014773A /* toy_biplane.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; name = toy_biplane.usdz; path = ../../../../../../Downloads/toy_biplane.usdz; sourceTree = "<group>"; };
 		2BBAB8BF28B4BB09001694F3 /* BoreArView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoreArView.swift; sourceTree = "<group>"; };
 		2BBAB8C128B4BBF1001694F3 /* BoreArView+Coaching.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BoreArView+Coaching.swift"; sourceTree = "<group>"; };
@@ -109,9 +115,12 @@
 			children = (
 				2B7BF462289A5EDF00633AB7 /* FocusARView.swift */,
 				2BBAB8BF28B4BB09001694F3 /* BoreArView.swift */,
+				2BAF555728B5D838008DDC3C /* BoreArViewDelegate.swift */,
 				2BBAB8C128B4BBF1001694F3 /* BoreArView+Coaching.swift */,
 				2BBAB8C328B4BC36001694F3 /* BoreArView+Gesture.swift */,
 				2BBAB8C528B4BF09001694F3 /* BoreArView+FocusEntity.swift */,
+				2BAF555328B5D05A008DDC3C /* ARViewContainer.swift */,
+				2BAF555528B5D0F4008DDC3C /* ARViewCoordinator.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -204,12 +213,15 @@
 				2B85E805289A53BA003D4F92 /* Model.swift in Sources */,
 				2B1FE50A2893E8320095457E /* ContentView.swift in Sources */,
 				2BBAB8C928B4D001001694F3 /* SignEntity.swift in Sources */,
+				2BAF555628B5D0F4008DDC3C /* ARViewCoordinator.swift in Sources */,
+				2BAF555828B5D838008DDC3C /* BoreArViewDelegate.swift in Sources */,
 				2B7BF463289A5EDF00633AB7 /* FocusARView.swift in Sources */,
 				2BBAB8C428B4BC36001694F3 /* BoreArView+Gesture.swift in Sources */,
 				2BBAB8C228B4BBF1001694F3 /* BoreArView+Coaching.swift in Sources */,
 				2BBAB8C628B4BF09001694F3 /* BoreArView+FocusEntity.swift in Sources */,
 				2B1FE5082893E8320095457E /* AppDelegate.swift in Sources */,
 				2BBAB8C028B4BB09001694F3 /* BoreArView.swift in Sources */,
+				2BAF555428B5D05A008DDC3C /* ARViewContainer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,24 +9,22 @@ import UIKit
 
 
 extension BoreArView {
-    
+
     func setupGesture() {
         addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap(_:))))
     }
-    
+
     @objc func handleTap(_ sender: UITapGestureRecognizer) {
+        // 屏幕点击命中模型
         let touchLocation = sender.location(in: self)
-        print("touchLocation \(touchLocation)")
-        
-        var hitResult = hitTest(touchLocation)
-        print("hit result \(hitResult)")
-        
-        guard let hitEntity = self.entity(at: touchLocation) else {
+        guard let hitEntity = self.entity(at: touchLocation) as? SignEntity else {
             return
         }
+
+        delegate?.onSignEntityTap(entity: hitEntity)
         
         print("hitEntity \(hitEntity)")
     }
-    
+
 }
 
