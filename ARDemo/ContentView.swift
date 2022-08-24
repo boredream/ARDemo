@@ -9,105 +9,78 @@ import SwiftUI
 import RealityKit
 import ARKit
 
-struct ContentView : View {
-    
-    @State private var isPlacementEnable = false
-    @State private var selectModel: Model?
-    @State private var confirmModel: Model?
-    @State private var selectSignEntity: SignEntity?
-    
-    private var models: [Model] = {
-        let filenamager = FileManager.default
-       
-        guard let path = Bundle.main.resourcePath,
-              let files = try? filenamager.contentsOfDirectory(atPath: path) else {
-            return []
-        }
-        
-        var avalableModels: [Model] = []
-        for filename in files where filename.hasSuffix(".usdz") {
-            let modelName = filename.replacingOccurrences(of: ".usdz", with: "")
-            let model = Model(modelName: modelName)
-            avalableModels.append(model)
-        }
-        return avalableModels
-    }()
-      
-    var body: some View {
-        ZStack(alignment: .bottom) {
-            ARViewContainer(confirmModel: $confirmModel, selectModel: $selectSignEntity)
-            if self.isPlacementEnable {
-                PlacementButtonView(
-                    isPlacementEnable: $isPlacementEnable,
-                    selectModel: $selectModel,
-                    confirmModel: $confirmModel)
-            } else {
-                ModelPickerView(
-                    isPlacementEnable: $isPlacementEnable,
-                    selectModel: $selectModel,
-                    models: models)
-            }
-        }
-    }
+enum EditStatus {
+    case ar
+    case onModelSelect
+    case onMove
 }
 
-struct ModelPickerView: View {
-    @Binding var isPlacementEnable: Bool
-    @Binding var selectModel: Model?
+struct ContentView : View {
     
-    var models: [Model]
+    @State var editStatus = EditStatus.ar
+    @State var selecModel: SignModel?
+    @State var confirmModel: SignModel?
+    
     var body: some View {
-        ScrollView(.horizontal) {
-            HStack(spacing: 20) {
-                ForEach(0 ..< self.models.count) { index in
+        ZStack {
+            ARViewContainer(confirmModel: $confirmModel)
+            
+            VStack {
+                if editStatus == EditStatus.onModelSelect {
+                    // 选中模型后，显示控制面板
+                    HStack(spacing: 50) {
+                        Button(action: {
+                            selecModel = nil
+                            editStatus = EditStatus.ar
+                        }, label: {
+                            Text("取消")
+                        })
+                        
+                        Button(action: {
+                            print("edit")
+                        }, label: {
+                            Text("编辑")
+                        })
+                        
+                        Button(action: {
+                            print("move")
+                        }, label: {
+                            Text("移动")
+                        })
+                        
+                        Button(action: {
+                            print("remove")
+//                            if let model = selecModel, let index = allModel.firstIndex(of: model) {
+//                                allModel.remove(at: index)
+//                                selecModel = nil
+//                                editStatus = EditStatus.ar
+//                            }
+                        }, label: {
+                            Text("删除")
+                        })
+                    }
+                    
+                    Spacer()
+                    
+                    VStack(alignment: .leading) {
+                        Text("选中: \(self.selecModel!.name)")
+                            .frame(width: .infinity)
+                    }
+                    .background(Color.gray)
+                } else if editStatus == EditStatus.onMove {
+                    // 移动模式
+                    
+                } else {
+                    // 默认状态下，只显示添加按钮
+                    Spacer()
+                    
                     Button(action: {
-                        self.isPlacementEnable = true
-                        self.selectModel = self.models[index]
+                        confirmModel = SignModel("新增标记")
                     }, label: {
-                        Image(self.models[index].modelName)
-                            .resizable()
-                            .frame(height: 80)
-                            .aspectRatio(1/1, contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/)
-                            .background(Color.white)
-                            .cornerRadius(12)
+                        Text("添加")
                     })
                 }
             }
-        } .padding(20).background(Color.black.opacity(0.5))
-    }
-}
-
-struct PlacementButtonView: View {
-    @Binding var isPlacementEnable: Bool
-    @Binding var selectModel: Model?
-    @Binding var confirmModel: Model?
-    
-    var body: some View {
-        HStack {
-            Button(action: {
-                self.isPlacementEnable = false
-                self.selectModel = nil
-            }, label: {
-                Image(systemName: "xmark")
-                    .frame(width: 60, height: 60)
-                    .font(.title)
-                    .background(Color.white.opacity(0.75))
-                    .cornerRadius(30)
-                    .padding(20)
-            })
-            
-            Button(action: {
-                self.isPlacementEnable = false
-                self.confirmModel = self.selectModel
-                self.selectModel = nil
-            }, label: {
-                Image(systemName: "checkmark")
-                    .frame(width: 60, height: 60)
-                    .font(.title)
-                    .background(Color.white.opacity(0.75))
-                    .cornerRadius(30)
-                    .padding(20)
-            })
         }
     }
 }
