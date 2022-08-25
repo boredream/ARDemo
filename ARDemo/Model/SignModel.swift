@@ -8,6 +8,14 @@
 import SwiftUI
 import UIKit
 
+enum SignModelAction {
+    case delete
+    case add
+    case startMove
+    case finishMove
+    case none
+}
+
 class SignModel: Hashable {
     
     static func == (lhs: SignModel, rhs: SignModel) -> Bool {
@@ -20,12 +28,14 @@ class SignModel: Hashable {
     
     var name: String
     var hasAttachedInArView: Bool
+    var action: SignModelAction
     
     var modelEntity: SignEntity?
     
     init(_ name: String) {
         self.name = name
         self.hasAttachedInArView = false
+        self.action = SignModelAction.none
         self.modelEntity = SignEntity()
     }
     

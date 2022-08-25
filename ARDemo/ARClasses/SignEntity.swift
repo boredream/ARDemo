@@ -14,7 +14,7 @@ class SignEntity: Entity, HasModel, HasCollision {
         let mesh = MeshResource.generateBox(size: [0.1, 0.1, 0.1])
         let material = SimpleMaterial(color: .red, isMetallic: false)
         self.model = ModelComponent(mesh: mesh, materials: [material])
-        self.collision = CollisionComponent(shapes: [ShapeResource.generateBox(size: [0.1, 0.1, 0.1])])
+        generateCollisionShapes(recursive: true)
     }
     
 }

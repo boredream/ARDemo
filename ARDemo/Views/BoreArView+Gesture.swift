@@ -22,7 +22,6 @@ extension BoreArView {
         }
 
         delegate?.onSignEntityTap(entity: hitEntity)
-        
         print("hitEntity \(hitEntity)")
     }
 

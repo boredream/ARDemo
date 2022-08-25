@@ -18,43 +18,46 @@ enum EditStatus {
 struct ContentView : View {
     
     @State var editStatus = EditStatus.ar
-    @State var selecModel: SignModel?
     @State var allModel: [SignModel] = []
+    @State var selectModel: SignModel?
     
     var body: some View {
         ZStack {
-            ARViewContainer(allModel: $allModel)
+            ARViewContainer(editStatus: $editStatus,
+                            allModel: $allModel,
+                            selectModel: $selectModel)
             
             VStack {
                 if editStatus == EditStatus.onModelSelect {
                     // 选中模型后，显示控制面板
                     HStack(spacing: 50) {
                         Button(action: {
-                            selecModel = nil
+                            selectModel = nil
                             editStatus = EditStatus.ar
                         }, label: {
                             Text("取消")
                         })
                         
                         Button(action: {
-                            print("edit")
+                           
                         }, label: {
                             Text("编辑")
                         })
                         
                         Button(action: {
-                            print("move")
+                            if let model = selectModel {
+                                model.action = SignModelAction.startMove
+                                editStatus = EditStatus.onMove
+                            }
                         }, label: {
                             Text("移动")
                         })
                         
                         Button(action: {
-                            print("remove")
-//                            if let model = selecModel, let index = allModel.firstIndex(of: model) {
-//                                allModel.remove(at: index)
-//                                selecModel = nil
-//                                editStatus = EditStatus.ar
-//                            }
+                            if let model = selectModel {
+                                model.action = SignModelAction.delete
+                                editStatus = EditStatus.ar
+                            }
                         }, label: {
                             Text("删除")
                         })
@@ -62,21 +65,36 @@ struct ContentView : View {
                     
                     Spacer()
                     
-                    VStack(alignment: .leading) {
-                        Text("选中: \(self.selecModel!.name)")
-                            .frame(width: .infinity)
+                    if let model = self.selectModel {
+                        VStack(alignment: .leading) {
+                            Text("选中: \(model.name)")
+                        }
+                        .background(Color.gray)
                     }
-                    .background(Color.gray)
                 } else if editStatus == EditStatus.onMove {
                     // 移动模式
+                    HStack(spacing: 50) {
+                        Button(action: {
+                            // 取消移动后，恢复到选择模式
+                            if let model = self.selectModel {
+                                model.action = SignModelAction.finishMove
+                                editStatus = EditStatus.onModelSelect
+                            }
+                        }, label: {
+                            Text("取消")
+                        })
+                    }
+                    
+                    Spacer()
                     
                 } else {
                     // 默认状态下，只显示添加按钮
                     Spacer()
                     
                     Button(action: {
-                        print("DDD: add")
-                        allModel.append(SignModel("新增标记"))
+                        let model = SignModel("新增标记")
+                        model.action = SignModelAction.add
+                        allModel.append(model)
                     }, label: {
                         Text("添加")
                     })
