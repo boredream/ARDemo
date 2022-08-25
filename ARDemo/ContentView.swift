@@ -22,85 +22,90 @@ struct ContentView : View {
     @State var selectModel: SignModel?
     
     var body: some View {
-        ZStack {
-            ARViewContainer(editStatus: $editStatus,
-                            allModel: $allModel,
-                            selectModel: $selectModel)
-            
-            VStack {
-                if editStatus == EditStatus.onModelSelect {
-                    // 选中模型后，显示控制面板
-                    HStack(spacing: 50) {
-                        Button(action: {
-                            selectModel = nil
-                            editStatus = EditStatus.ar
-                        }, label: {
-                            Text("取消")
-                        })
-                        
-                        Button(action: {
-                           
-                        }, label: {
-                            Text("编辑")
-                        })
-                        
-                        Button(action: {
-                            if let model = selectModel {
-                                model.action = SignModelAction.startMove
-                                editStatus = EditStatus.onMove
-                            }
-                        }, label: {
-                            Text("移动")
-                        })
-                        
-                        Button(action: {
-                            if let model = selectModel {
-                                model.action = SignModelAction.delete
+        NavigationView {
+            ZStack {
+                ARViewContainer(editStatus: $editStatus,
+                                allModel: $allModel,
+                                selectModel: $selectModel)
+                
+                VStack {
+                    if editStatus == EditStatus.onModelSelect {
+                        // 选中模型后，显示控制面板
+                        HStack(spacing: 50) {
+                            Button(action: {
+                                selectModel = nil
                                 editStatus = EditStatus.ar
+                            }, label: {
+                                Text("取消")
+                            })
+                            
+                            if let model = selectModel {
+                                NavigationLink(destination: SignEditView(signModel: model), label: {
+                                    Text("编辑")
+                                })
                             }
-                        }, label: {
-                            Text("删除")
-                        })
-                    }
-                    
-                    Spacer()
-                    
-                    if let model = self.selectModel {
-                        VStack(alignment: .leading) {
-                            Text("选中: \(model.name)")
+                            
+                            Button(action: {
+                                if let model = selectModel {
+                                    model.action = SignModelAction.startMove
+                                    editStatus = EditStatus.onMove
+                                }
+                            }, label: {
+                                Text("移动")
+                            })
+                            
+                            Button(action: {
+                                if let model = selectModel {
+                                    model.action = SignModelAction.delete
+                                    editStatus = EditStatus.ar
+                                }
+                            }, label: {
+                                Text("删除")
+                            })
                         }
-                        .background(Color.gray)
-                    }
-                } else if editStatus == EditStatus.onMove {
-                    // 移动模式
-                    HStack(spacing: 50) {
-                        Button(action: {
-                            // 取消移动后，恢复到选择模式
-                            if let model = self.selectModel {
-                                model.action = SignModelAction.finishMove
-                                editStatus = EditStatus.onModelSelect
+                        
+                        Spacer()
+                        
+                        if let model = self.selectModel {
+                            VStack(alignment: .leading) {
+                                Text("选中: \(model.name)")
                             }
+                            .background(Color.gray)
+                        }
+                    } else if editStatus == EditStatus.onMove {
+                        // 移动模式
+                        HStack(spacing: 50) {
+                            Button(action: {
+                                // 取消移动后，恢复到选择模式
+                                if let model = self.selectModel {
+                                    model.action = SignModelAction.finishMove
+                                    editStatus = EditStatus.onModelSelect
+                                }
+                            }, label: {
+                                Text("取消")
+                            })
+                        }
+                        
+                        Spacer()
+                        
+                    } else {
+                        // 默认状态下，只显示添加按钮
+                        Spacer()
+                        
+                        Button(action: {
+                            let model = SignModel("新增标记\(String(allModel.count))")
+                            model.action = SignModelAction.add
+                            allModel.append(model)
                         }, label: {
-                            Text("取消")
+                            Text("添加")
                         })
                     }
-                    
-                    Spacer()
-                    
-                } else {
-                    // 默认状态下，只显示添加按钮
-                    Spacer()
-                    
-                    Button(action: {
-                        let model = SignModel("新增标记\(String(allModel.count))")
-                        model.action = SignModelAction.add
-                        allModel.append(model)
-                    }, label: {
-                        Text("添加")
-                    })
                 }
             }
+            .edgesIgnoringSafeArea(.all)
+            .background(Color.gray.opacity(0.5))
         }
+        .navigationTitle("主页")
     }
 }
 

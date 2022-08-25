@@ -27,6 +27,7 @@ class SignModel: Hashable {
     }
     
     var name: String
+    var color: String
     var hasAttachedInArView: Bool
     var action: SignModelAction
     
@@ -34,6 +35,7 @@ class SignModel: Hashable {
     
     init(_ name: String) {
         self.name = name
+        self.color = "orange"
         self.hasAttachedInArView = false
         self.action = SignModelAction.none
         self.modelEntity = SignEntity()

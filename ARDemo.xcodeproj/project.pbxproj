@@ -24,6 +24,8 @@
 		2BBAB8C428B4BC36001694F3 /* BoreArView+Gesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBAB8C328B4BC36001694F3 /* BoreArView+Gesture.swift */; };
 		2BBAB8C628B4BF09001694F3 /* BoreArView+FocusEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBAB8C528B4BF09001694F3 /* BoreArView+FocusEntity.swift */; };
 		2BBAB8C928B4D001001694F3 /* SignEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBAB8C828B4D001001694F3 /* SignEntity.swift */; };
+		2BBC473B28B75B7D00D7A781 /* SignEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBC473A28B75B7D00D7A781 /* SignEditView.swift */; };
+		2BBC473E28B7603700D7A781 /* ColorUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBC473D28B7603700D7A781 /* ColorUtil.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +48,8 @@
 		2BBAB8C328B4BC36001694F3 /* BoreArView+Gesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BoreArView+Gesture.swift"; sourceTree = "<group>"; };
 		2BBAB8C528B4BF09001694F3 /* BoreArView+FocusEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BoreArView+FocusEntity.swift"; sourceTree = "<group>"; };
 		2BBAB8C828B4D001001694F3 /* SignEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignEntity.swift; sourceTree = "<group>"; };
+		2BBC473A28B75B7D00D7A781 /* SignEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignEditView.swift; sourceTree = "<group>"; };
+		2BBC473D28B7603700D7A781 /* ColorUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorUtil.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +89,7 @@
 				2BAF557728B606A9008DDC3C /* Model */,
 				2BBAB8C728B4CFD4001694F3 /* ARClasses */,
 				2BB01356289927950014773A /* models */,
+				2BBC473C28B7602500D7A781 /* Utils */,
 				2B1FE5072893E8320095457E /* AppDelegate.swift */,
 				2B1FE50D2893E8350095457E /* Assets.xcassets */,
 				2B1FE5122893E8350095457E /* Info.plist */,
@@ -129,6 +134,7 @@
 				2BBAB8C528B4BF09001694F3 /* BoreArView+FocusEntity.swift */,
 				2BAF555328B5D05A008DDC3C /* ARViewContainer.swift */,
 				2BAF555528B5D0F4008DDC3C /* ARViewCoordinator.swift */,
+				2BBC473A28B75B7D00D7A781 /* SignEditView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -139,6 +145,14 @@
 				2BBAB8C828B4D001001694F3 /* SignEntity.swift */,
 			);
 			path = ARClasses;
+			sourceTree = "<group>";
+		};
+		2BBC473C28B7602500D7A781 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				2BBC473D28B7603700D7A781 /* ColorUtil.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,9 +233,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				2BAF557928B606CA008DDC3C /* SignModel.swift in Sources */,
+				2BBC473B28B75B7D00D7A781 /* SignEditView.swift in Sources */,
 				2B1FE50A2893E8320095457E /* ContentView.swift in Sources */,
 				2BBAB8C928B4D001001694F3 /* SignEntity.swift in Sources */,
 				2BAF555628B5D0F4008DDC3C /* ARViewCoordinator.swift in Sources */,
+				2BBC473E28B7603700D7A781 /* ColorUtil.swift in Sources */,
 				2BAF555828B5D838008DDC3C /* BoreArViewDelegate.swift in Sources */,
 				2B7BF463289A5EDF00633AB7 /* FocusARView.swift in Sources */,
 				2BBAB8C428B4BC36001694F3 /* BoreArView+Gesture.swift in Sources */,
