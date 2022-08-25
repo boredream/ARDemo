@@ -48,14 +48,14 @@ struct ARViewContainer: UIViewRepresentable {
             } else if model.action == .startMove {
                 if let modelEntity = model.modelEntity {
                     print("DDD: start move model = \(model.name)")
-                    uiView.installGestures(for: modelEntity)
+                    uiView.installGestures([.rotation, .translation], for: modelEntity)
                 }
             } else if model.action == .finishMove {
-                if let modelEntity = model.modelEntity {
-                    print("DDD: finish move model = \(model.name)")
-                    // TODO: x
-                    uiView.gest
-                }
+                print("DDD: finish move model = \(model.name)")
+                // 过滤tap点击事件，其它的都删除
+                uiView.gestureRecognizers?
+                    .filter { return !($0 is UITapGestureRecognizer) }
+                    .forEach(uiView.removeGestureRecognizer)
             }
             
             // 这里处理不会再次引起刷新？

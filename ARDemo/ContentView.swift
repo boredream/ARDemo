@@ -92,7 +92,7 @@ struct ContentView : View {
                     Spacer()
                     
                     Button(action: {
-                        let model = SignModel("新增标记")
+                        let model = SignModel("新增标记\(String(allModel.count))")
                         model.action = SignModelAction.add
                         allModel.append(model)
                     }, label: {
