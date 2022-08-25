@@ -80,12 +80,12 @@
 		2B1FE5062893E8320095457E /* ARDemo */ = {
 			isa = PBXGroup;
 			children = (
+				2B1FE5092893E8320095457E /* ContentView.swift */,
 				2BB2D74428A39F0500390CA4 /* Views */,
 				2BAF557728B606A9008DDC3C /* Model */,
 				2BBAB8C728B4CFD4001694F3 /* ARClasses */,
 				2BB01356289927950014773A /* models */,
 				2B1FE5072893E8320095457E /* AppDelegate.swift */,
-				2B1FE5092893E8320095457E /* ContentView.swift */,
 				2B1FE50D2893E8350095457E /* Assets.xcassets */,
 				2B1FE5122893E8350095457E /* Info.plist */,
 				2B1FE50F2893E8350095457E /* Preview Content */,

@@ -11,7 +11,7 @@ import ARKit
 
 struct ARViewContainer: UIViewRepresentable {
     
-    @Binding var confirmModel: SignModel?
+    @Binding var allModel: [SignModel]
     var selectModel: SignEntity?
     
     func makeUIView(context: Context) -> ARView {
@@ -24,23 +24,19 @@ struct ARViewContainer: UIViewRepresentable {
     }
     
     func updateUIView(_ uiView: ARView, context: Context) {
-        if let model = self.confirmModel {
-            if let modelEntity = model.modelEntity {
+        print("DDD: updateUIView")
+        for model in allModel {
+            // 遍历所有model，找到未添加的，加入AR
+            if !model.hasAttachedInArView, let modelEntity = model.modelEntity {
                 print("DDD: adding model to scene \(model.name)")
                 let anchorEntity = AnchorEntity(plane: .any)
-                
-                let appendModelEntity = modelEntity.clone(recursive: true)
-                anchorEntity.addChild(appendModelEntity)
-                
-                uiView.installGestures(for: appendModelEntity)
+                anchorEntity.addChild(modelEntity)
                 uiView.scene.addAnchor(anchorEntity)
-            } else {
-                print("DDD: unable load modelEntity \(model.name)")
             }
             
             // 因为是传入新增到AR中，一次性的，用完后清掉
             DispatchQueue.main.async {
-                self.confirmModel = nil
+                model.hasAttachedInArView = true
             }
         }
     }

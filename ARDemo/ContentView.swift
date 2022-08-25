@@ -19,11 +19,11 @@ struct ContentView : View {
     
     @State var editStatus = EditStatus.ar
     @State var selecModel: SignModel?
-    @State var confirmModel: SignModel?
+    @State var allModel: [SignModel] = []
     
     var body: some View {
         ZStack {
-            ARViewContainer(confirmModel: $confirmModel)
+            ARViewContainer(allModel: $allModel)
             
             VStack {
                 if editStatus == EditStatus.onModelSelect {
@@ -75,7 +75,8 @@ struct ContentView : View {
                     Spacer()
                     
                     Button(action: {
-                        confirmModel = SignModel("新增标记")
+                        print("DDD: add")
+                        allModel.append(SignModel("新增标记"))
                     }, label: {
                         Text("添加")
                     })

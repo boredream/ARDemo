@@ -19,11 +19,13 @@ class SignModel: Hashable {
     }
     
     var name: String
+    var hasAttachedInArView: Bool
     
     var modelEntity: SignEntity?
     
     init(_ name: String) {
         self.name = name
+        self.hasAttachedInArView = false
         self.modelEntity = SignEntity()
     }
     
