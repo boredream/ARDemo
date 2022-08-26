@@ -9,16 +9,41 @@ import SwiftUI
 
 struct SignEditView: View {
     
-    var colorNames = ["orange", "red", "green", "blue", "purple"]
+    @EnvironmentObject var modelData: ModelData
     
-    @State var signModel: SignModel
+    var signModel: SignModel
+    @Binding var showEditSheet: Bool
+    @State var colorName: String
+    @State var name: String
+    
+    init(signModel: SignModel, showEditSheet: Binding<Bool>) {
+        self.signModel = signModel
+        self._showEditSheet = showEditSheet
+        self.colorName = signModel.colorName
+        self.name = signModel.name
+    }
     
     var body: some View {
         VStack {
             HStack {
-                ForEach(colorNames, id: \.self) { key in
+                Button("关闭") {
+                    self.showEditSheet = false
+                }
+                
+                Spacer()
+                
+                Button("确定") {
+                    // 去更新
+                    self.signModel.name = self.name
+                    self.signModel.colorName = self.colorName
+                    self.showEditSheet = false
+                }
+            }
+            
+            HStack {
+                ForEach(modelData.colorNames, id: \.self) { key in
                     Button(action: {
-                        self.signModel.colorName = key
+                        colorName = key
                     }, label: {
                         ZStack {
                             Circle()
@@ -26,7 +51,7 @@ struct SignEditView: View {
                                 .frame(width: 40, height: 40)
                             
                             Circle()
-                                .stroke(signModel.colorName == key ? ColorUtil.getColorByName(key) : Color.white.opacity(0), lineWidth: 4)
+                                .stroke(colorName == key ? ColorUtil.getColorByName(key) : Color.white.opacity(0), lineWidth: 4)
                                 .frame(width: 52, height: 52)
                         }
                     })
@@ -36,18 +61,15 @@ struct SignEditView: View {
             HStack {
                 Text("名称：").bold()
                 Divider().frame(height: 20)
-                TextField("name", text: $signModel.name)
+                TextField("name", text: $name)
             }
-            .padding(16)
-            
-            Spacer()
         }
-        .edgesIgnoringSafeArea(.all)
+        .padding(16)
     }
 }
 
 struct SignEdit_Previews: PreviewProvider {
     static var previews: some View {
-        SignEditView(signModel: SignModel("name"))
+        SignEditView(signModel: SignModel("name"), showEditSheet: .constant(true))
     }
 }
