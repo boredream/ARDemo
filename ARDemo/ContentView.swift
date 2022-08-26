@@ -105,7 +105,7 @@ struct ContentView : View {
             .edgesIgnoringSafeArea(.all)
             .background(Color.gray.opacity(0.5))
         }
-        .navigationTitle("主页")
+        .navigationTitle("返回")
     }
 }
 

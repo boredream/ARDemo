@@ -14,6 +14,7 @@
 		2B7BF461289A5BEC00633AB7 /* FocusEntity in Frameworks */ = {isa = PBXBuildFile; productRef = 2B7BF460289A5BEC00633AB7 /* FocusEntity */; };
 		2B7BF463289A5EDF00633AB7 /* FocusARView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7BF462289A5EDF00633AB7 /* FocusARView.swift */; };
 		2B8283D0289A14DE00C14B63 /* toy_drummer.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 2B8283CF289A14DE00C14B63 /* toy_drummer.usdz */; };
+		2BADDB1F28B8BDAA008305D3 /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BADDB1E28B8BDAA008305D3 /* ModelData.swift */; };
 		2BAF555428B5D05A008DDC3C /* ARViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BAF555328B5D05A008DDC3C /* ARViewContainer.swift */; };
 		2BAF555628B5D0F4008DDC3C /* ARViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BAF555528B5D0F4008DDC3C /* ARViewCoordinator.swift */; };
 		2BAF555828B5D838008DDC3C /* BoreArViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BAF555728B5D838008DDC3C /* BoreArViewDelegate.swift */; };
@@ -38,6 +39,7 @@
 		2B7BF462289A5EDF00633AB7 /* FocusARView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusARView.swift; sourceTree = "<group>"; };
 		2B7BF464289A80C300633AB7 /* AR会话 1.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; name = "AR会话 1.mov"; path = "../../../../Desktop/AR/AR会话 1.mov"; sourceTree = "<group>"; };
 		2B8283CF289A14DE00C14B63 /* toy_drummer.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; name = toy_drummer.usdz; path = ../../../../../../Downloads/toy_drummer.usdz; sourceTree = "<group>"; };
+		2BADDB1E28B8BDAA008305D3 /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
 		2BAF555328B5D05A008DDC3C /* ARViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewContainer.swift; sourceTree = "<group>"; };
 		2BAF555528B5D0F4008DDC3C /* ARViewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewCoordinator.swift; sourceTree = "<group>"; };
 		2BAF555728B5D838008DDC3C /* BoreArViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoreArViewDelegate.swift; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				2BAF557828B606CA008DDC3C /* SignModel.swift */,
+				2BADDB1E28B8BDAA008305D3 /* ModelData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -234,6 +237,7 @@
 			files = (
 				2BAF557928B606CA008DDC3C /* SignModel.swift in Sources */,
 				2BBC473B28B75B7D00D7A781 /* SignEditView.swift in Sources */,
+				2BADDB1F28B8BDAA008305D3 /* ModelData.swift in Sources */,
 				2B1FE50A2893E8320095457E /* ContentView.swift in Sources */,
 				2BBAB8C928B4D001001694F3 /* SignEntity.swift in Sources */,
 				2BAF555628B5D0F4008DDC3C /* ARViewCoordinator.swift in Sources */,

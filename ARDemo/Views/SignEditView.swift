@@ -18,15 +18,15 @@ struct SignEditView: View {
             HStack {
                 ForEach(colorNames, id: \.self) { key in
                     Button(action: {
-                        self.signModel.color = key
+                        self.signModel.colorName = key
                     }, label: {
                         ZStack {
                             Circle()
-                                .fill(ColorUtil.getColorByName($signModel.color))
+                                .fill(ColorUtil.getColorByName(key))
                                 .frame(width: 40, height: 40)
                             
                             Circle()
-                                .stroke(signModel.color == key ? ColorUtil.getColorByName($signModel.color) : Color.white.opacity(0), lineWidth: 4)
+                                .stroke(signModel.colorName == key ? ColorUtil.getColorByName(key) : Color.white.opacity(0), lineWidth: 4)
                                 .frame(width: 52, height: 52)
                         }
                     })
@@ -42,7 +42,7 @@ struct SignEditView: View {
             
             Spacer()
         }
-        .padding(16)
+        .edgesIgnoringSafeArea(.all)
     }
 }
 
