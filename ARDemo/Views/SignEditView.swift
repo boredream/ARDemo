@@ -11,32 +11,27 @@ struct SignEditView: View {
     
     @EnvironmentObject var modelData: ModelData
     
-    var signModel: SignModel
     @Binding var showEditSheet: Bool
-    @State var colorName: String
-    @State var name: String
-    
-    init(signModel: SignModel, showEditSheet: Binding<Bool>) {
-        self.signModel = signModel
-        self._showEditSheet = showEditSheet
-        self.colorName = signModel.colorName
-        self.name = signModel.name
-    }
+    @State var colorName: String = ""
+    @State var name: String = ""
     
     var body: some View {
         VStack {
             HStack {
                 Button("关闭") {
-                    self.showEditSheet = false
+                    showEditSheet = false
                 }
                 
                 Spacer()
                 
                 Button("确定") {
                     // 去更新
-                    self.signModel.name = self.name
-                    self.signModel.colorName = self.colorName
-                    self.showEditSheet = false
+                    modelData.selectModel?.name = self.name
+                    modelData.selectModel?.colorName = self.colorName
+                    modelData.selectModel?.action = .update
+                    // TODO: 如何提醒modelList更新？
+                    modelData.modelList += []
+                    showEditSheet = false
                 }
             }
             
@@ -65,11 +60,11 @@ struct SignEditView: View {
             }
         }
         .padding(16)
-    }
-}
-
-struct SignEdit_Previews: PreviewProvider {
-    static var previews: some View {
-        SignEditView(signModel: SignModel("name"), showEditSheet: .constant(true))
+        .onAppear(perform: {
+            if let signModel = modelData.selectModel {
+                self.colorName = signModel.colorName
+                self.name = signModel.name
+            }
+        })
     }
 }

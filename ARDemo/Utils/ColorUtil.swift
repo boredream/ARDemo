@@ -18,7 +18,7 @@ class ColorUtil {
             "blue": .blue,
             "purple": .purple,
         ]
-        print("DDD: getColorByName \(colorName)")
+        // print("DDD: getColorByName \(colorName)")
         return nameColorDict[colorName] ?? Color.orange
     }
     

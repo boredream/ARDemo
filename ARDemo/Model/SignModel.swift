@@ -11,6 +11,7 @@ import UIKit
 enum SignModelAction {
     case delete
     case add
+    case update
     case startMove
     case finishMove
     case none
@@ -33,12 +34,16 @@ class SignModel: Hashable {
     
     var modelEntity: SignEntity?
     
-    init(_ name: String) {
+    init(name: String, colorName: String) {
         self.name = name
-        self.colorName = "orange"
+        self.colorName = colorName
         self.hasAttachedInArView = false
         self.action = SignModelAction.none
         self.modelEntity = SignEntity(colorName: colorName)
+    }
+    
+    convenience init(_ name: String) {
+        self.init(name: name, colorName: "orange")
     }
     
 }

@@ -13,7 +13,6 @@ struct ARViewContainer: UIViewRepresentable {
     
     @EnvironmentObject var modelData: ModelData
     @Binding var editStatus: EditStatus
-    @Binding var selectModel: SignModel?
     
     func makeUIView(context: Context) -> ARView {
         let arView = BoreArView(frame: .zero)
@@ -45,6 +44,12 @@ struct ARViewContainer: UIViewRepresentable {
                     print("DDD: delete model = \(model.name)")
                     uiView.scene.removeAnchor(anchor)
                 }
+            } else if model.action == .update {
+                // 更新
+                if let modelEntity = model.modelEntity {
+                    print("DDD: update model = \(model.name)")
+                    modelEntity.update(model)
+                }
             } else if model.action == .startMove {
                 if let modelEntity = model.modelEntity {
                     print("DDD: start move model = \(model.name)")
@@ -64,7 +69,7 @@ struct ARViewContainer: UIViewRepresentable {
                 if model.action == .add {
                     model.hasAttachedInArView = true
                 } else if model.action == .delete {
-                    selectModel = nil
+                    modelData.selectModel = nil
                 }
                 model.action = .none
             }

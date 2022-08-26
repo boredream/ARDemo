@@ -21,7 +21,7 @@ class ARViewCoordinator: NSObject, BoreArViewDelegate {
         for model in container.modelData.modelList {
             if model.modelEntity === entity {
                 // 找到被点击的Model
-                container.selectModel = model
+                container.modelData.selectModel = model
                 container.editStatus = EditStatus.onModelSelect
                 break;
             }

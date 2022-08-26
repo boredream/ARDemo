@@ -11,6 +11,7 @@ final class ModelData: ObservableObject {
     
     var colorNames = ["orange", "red", "green", "blue", "purple"]
     @Published var modelList: [SignModel] = []
+    @Published var selectModel: SignModel?
     
 }
 

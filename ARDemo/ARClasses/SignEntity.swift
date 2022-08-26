@@ -23,4 +23,12 @@ class SignEntity: Entity, HasModel, HasCollision {
     required init() {
         fatalError("init() has not been implemented")
     }
+    
+    func update(_ newModel: SignModel) {
+        if let model = self.model {
+            let color = ColorUtil.getColorByName(newModel.colorName)
+            let material = SimpleMaterial(color: SimpleMaterial.Color(color), isMetallic: false)
+            self.model = ModelComponent(mesh: model.mesh, materials: [material])
+        }
+    }
 }
