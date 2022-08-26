@@ -17,16 +17,14 @@ enum EditStatus {
 
 struct ContentView : View {
     
+    @EnvironmentObject var modelData: ModelData
     @State var editStatus = EditStatus.ar
-    @State var allModel: [SignModel] = []
     @State var selectModel: SignModel?
     
     var body: some View {
         NavigationView {
             ZStack {
-                ARViewContainer(editStatus: $editStatus,
-                                allModel: $allModel,
-                                selectModel: $selectModel)
+                ARViewContainer(editStatus: $editStatus, selectModel: $selectModel)
                 
                 VStack {
                     if editStatus == EditStatus.onModelSelect {
@@ -93,9 +91,9 @@ struct ContentView : View {
                         Spacer()
                         
                         Button(action: {
-                            let model = SignModel("新增标记\(String(allModel.count))")
+                            let model = SignModel("新增标记\(String(modelData.modelList.count))")
                             model.action = SignModelAction.add
-                            allModel.append(model)
+                            modelData.modelList.append(model)
                         }, label: {
                             Text("添加")
                         })
@@ -108,11 +106,3 @@ struct ContentView : View {
         .navigationTitle("返回")
     }
 }
-
-#if DEBUG
-struct ContentView_Previews : PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}
-#endif

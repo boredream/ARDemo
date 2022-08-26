@@ -18,7 +18,7 @@ class ARViewCoordinator: NSObject, BoreArViewDelegate {
     }
     
     func onSignEntityTap(entity: SignEntity) {
-        for model in container.allModel {
+        for model in container.modelData.modelList {
             if model.modelEntity === entity {
                 // 找到被点击的Model
                 container.selectModel = model

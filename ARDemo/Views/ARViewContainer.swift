@@ -11,8 +11,8 @@ import ARKit
 
 struct ARViewContainer: UIViewRepresentable {
     
+    @EnvironmentObject var modelData: ModelData
     @Binding var editStatus: EditStatus
-    @Binding var allModel: [SignModel]
     @Binding var selectModel: SignModel?
     
     func makeUIView(context: Context) -> ARView {
@@ -28,7 +28,7 @@ struct ARViewContainer: UIViewRepresentable {
         print("DDD: updateUIView")
         
         // 遍历所有model
-        for model in allModel {
+        for model in modelData.modelList {
             // 处理AR视图
             if model.action == .add {
                 // 找到未添加的，加入AR
