@@ -20,6 +20,7 @@
 		2BAF557928B606CA008DDC3C /* SignModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BAF557828B606CA008DDC3C /* SignModel.swift */; };
 		2BB01358289927D00014773A /* toy_biplane.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 2BB01357289927D00014773A /* toy_biplane.usdz */; };
 		2BB480A728BC916400BD23E5 /* BoreArView+Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB480A628BC916400BD23E5 /* BoreArView+Persistence.swift */; };
+		2BB480AB28BE020900BD23E5 /* BoreArView+Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB480AA28BE020900BD23E5 /* BoreArView+Session.swift */; };
 		2BBAB8C028B4BB09001694F3 /* BoreArView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBAB8BF28B4BB09001694F3 /* BoreArView.swift */; };
 		2BBAB8C228B4BBF1001694F3 /* BoreArView+Coaching.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBAB8C128B4BBF1001694F3 /* BoreArView+Coaching.swift */; };
 		2BBAB8C428B4BC36001694F3 /* BoreArView+Gesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBAB8C328B4BC36001694F3 /* BoreArView+Gesture.swift */; };
@@ -45,6 +46,7 @@
 		2BAF557828B606CA008DDC3C /* SignModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignModel.swift; sourceTree = "<group>"; };
 		2BB01357289927D00014773A /* toy_biplane.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; name = toy_biplane.usdz; path = ../../../../../../Downloads/toy_biplane.usdz; sourceTree = "<group>"; };
 		2BB480A628BC916400BD23E5 /* BoreArView+Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BoreArView+Persistence.swift"; sourceTree = "<group>"; };
+		2BB480AA28BE020900BD23E5 /* BoreArView+Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BoreArView+Session.swift"; sourceTree = "<group>"; };
 		2BBAB8BF28B4BB09001694F3 /* BoreArView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoreArView.swift; sourceTree = "<group>"; };
 		2BBAB8C128B4BBF1001694F3 /* BoreArView+Coaching.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BoreArView+Coaching.swift"; sourceTree = "<group>"; };
 		2BBAB8C328B4BC36001694F3 /* BoreArView+Gesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BoreArView+Gesture.swift"; sourceTree = "<group>"; };
@@ -132,9 +134,10 @@
 				2BBAB8BF28B4BB09001694F3 /* BoreArView.swift */,
 				2BAF555728B5D838008DDC3C /* BoreArViewDelegate.swift */,
 				2BBAB8C128B4BBF1001694F3 /* BoreArView+Coaching.swift */,
-				2BBAB8C328B4BC36001694F3 /* BoreArView+Gesture.swift */,
 				2BBAB8C528B4BF09001694F3 /* BoreArView+FocusEntity.swift */,
+				2BBAB8C328B4BC36001694F3 /* BoreArView+Gesture.swift */,
 				2BB480A628BC916400BD23E5 /* BoreArView+Persistence.swift */,
+				2BB480AA28BE020900BD23E5 /* BoreArView+Session.swift */,
 				2BAF555328B5D05A008DDC3C /* ARViewContainer.swift */,
 				2BAF555528B5D0F4008DDC3C /* ARViewCoordinator.swift */,
 				2BBC473A28B75B7D00D7A781 /* SignEditView.swift */,
@@ -243,6 +246,7 @@
 				2BAF555628B5D0F4008DDC3C /* ARViewCoordinator.swift in Sources */,
 				2BBC473E28B7603700D7A781 /* ColorUtil.swift in Sources */,
 				2BAF555828B5D838008DDC3C /* BoreArViewDelegate.swift in Sources */,
+				2BB480AB28BE020900BD23E5 /* BoreArView+Session.swift in Sources */,
 				2BBAB8C428B4BC36001694F3 /* BoreArView+Gesture.swift in Sources */,
 				2BBAB8C228B4BBF1001694F3 /* BoreArView+Coaching.swift in Sources */,
 				2BBAB8C628B4BF09001694F3 /* BoreArView+FocusEntity.swift in Sources */,

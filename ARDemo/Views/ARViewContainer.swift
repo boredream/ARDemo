@@ -22,25 +22,28 @@ struct ARViewContainer: UIViewRepresentable {
         arView.addFocusEntity()
         arView.setupGesture()
         arView.delegate = context.coordinator
+        arView.modelData = modelData
         return arView
     }
     
     func updateUIView(_ uiView: ARView, context: Context) {
         print("DDD: updateUIView")
         
-        if let arView = uiView as? BoreArView {
-            if saved {
-                arView.saveWorldMap()
-                DispatchQueue.main.async {
-                    saved = false
-                }
+        guard let arView = uiView as? BoreArView else {
+            return
+        }
+        
+        if saved {
+            arView.saveWorldMap()
+            DispatchQueue.main.async {
+                saved = false
             }
-            
-            if loaded {
-                arView.loadWorldMap()
-                DispatchQueue.main.async {
-                    loaded = false
-                }
+        }
+        
+        if loaded {
+            arView.loadWorldMap()
+            DispatchQueue.main.async {
+                loaded = false
             }
         }
         
@@ -49,11 +52,9 @@ struct ARViewContainer: UIViewRepresentable {
             // 处理AR视图
             if model.action == .add {
                 // 找到未添加的，加入AR
-                if !model.hasAttachedInArView, let modelEntity = model.modelEntity {
+                if !model.hasAttachedInArView {
                     print("DDD: add model = \(model.name)")
-                    let anchorEntity = AnchorEntity(plane: .any)
-                    anchorEntity.addChild(modelEntity)
-                    uiView.scene.addAnchor(anchorEntity)
+                    arView.addModelEntity(model)
                 }
             } else if model.action == .delete {
                 // 删除
@@ -97,4 +98,5 @@ struct ARViewContainer: UIViewRepresentable {
     func makeCoordinator() -> ARViewCoordinator {
         return ARViewCoordinator(self)
     }
+
 }
