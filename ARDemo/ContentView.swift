@@ -20,10 +20,12 @@ struct ContentView : View {
     @EnvironmentObject var modelData: ModelData
     @State var editStatus = EditStatus.ar
     @State var showEditSheet = false
+    @State var saved = false
+    @State var loaded = false
     
     var body: some View {
         ZStack {
-            ARViewContainer(editStatus: $editStatus)
+            ARViewContainer(editStatus: $editStatus, saved: $saved, loaded: $loaded)
             
             VStack {
                 if editStatus == EditStatus.onModelSelect {
@@ -85,6 +87,20 @@ struct ContentView : View {
                     
                 } else {
                     // 默认状态下，只显示添加按钮
+                    HStack(spacing: 50) {
+                        Button(action: {
+                            saved = true
+                        }, label: {
+                            Text("保存")
+                        })
+                        
+                        Button(action: {
+                            loaded = true
+                        }, label: {
+                            Text("加载")
+                        })
+                    }
+                    
                     Spacer()
                     
                     Button(action: {

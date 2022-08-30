@@ -15,11 +15,29 @@ class BoreArView: ARView {
     
     var delegate: BoreArViewDelegate?
     
+    var defaultConfiguration: ARWorldTrackingConfiguration {
+        let config = ARWorldTrackingConfiguration()
+        // 平面探测
+        config.planeDetection = [.horizontal]
+        // 环境纹理
+        config.environmentTexturing = .automatic
+        // 判断设备是否支持配置
+        if ARWorldTrackingConfiguration.supportsSceneReconstruction(.mesh) {
+            print("DDD: supportsSceneReconstruction")
+            config.sceneReconstruction = .mesh
+        }
+        // 深度检测
+        if type(of: config).supportsFrameSemantics(.sceneDepth) {
+            print("DDD: supportsFrameSemantics")
+            config.frameSemantics = .sceneDepth;
+        }
+        return config
+    }
+    
     required init(frame frameRect: CGRect) {
         super.init(frame: frameRect)
         
-        setupConfig()
-        
+        self.session.run(defaultConfiguration)
         // debug模式显示AR识别信息
         debugOptions = [
             // .showPhysics, // 绘制碰撞器（包围盒）和所有刚体
@@ -35,25 +53,16 @@ class BoreArView: ARView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupConfig() {
-        let config = ARWorldTrackingConfiguration()
-        // 平面探测
-        config.planeDetection = [.horizontal]
-        // 环境纹理
-        config.environmentTexturing = .automatic
-        // 判断设备是否支持配置
-        if ARWorldTrackingConfiguration.supportsSceneReconstruction(.mesh) {
-            print("DDD: supportsSceneReconstruction")
-            config.sceneReconstruction = .mesh
-        }
-        
-        // 深度检测
-        if type(of: config).supportsFrameSemantics(.sceneDepth) {
-            print("DDD: supportsFrameSemantics")
-            config.frameSemantics = .sceneDepth;
-        }
-        
-        session.run(config)
+    // MARK: - Persistence: Saving and Loading
+    let storedData = UserDefaults.standard
+    let mapKey = "ar.worldmap"
+
+    lazy var worldMapData: Data? = {
+        storedData.data(forKey: mapKey)
+    }()
+    
+    func resetTracking() {
+        self.session.run(defaultConfiguration, options: [.resetTracking, .removeExistingAnchors])
     }
     
 }

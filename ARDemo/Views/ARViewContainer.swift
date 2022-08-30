@@ -13,6 +13,8 @@ struct ARViewContainer: UIViewRepresentable {
     
     @EnvironmentObject var modelData: ModelData
     @Binding var editStatus: EditStatus
+    @Binding var saved: Bool
+    @Binding var loaded: Bool
     
     func makeUIView(context: Context) -> ARView {
         let arView = BoreArView(frame: .zero)
@@ -25,6 +27,22 @@ struct ARViewContainer: UIViewRepresentable {
     
     func updateUIView(_ uiView: ARView, context: Context) {
         print("DDD: updateUIView")
+        
+        if let arView = uiView as? BoreArView {
+            if saved {
+                arView.saveWorldMap()
+                DispatchQueue.main.async {
+                    saved = false
+                }
+            }
+            
+            if loaded {
+                arView.loadWorldMap()
+                DispatchQueue.main.async {
+                    loaded = false
+                }
+            }
+        }
         
         // 遍历所有model
         for model in modelData.modelList {
