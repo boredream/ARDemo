@@ -21,6 +21,21 @@ extension BoreArView: ARSessionDelegate {
             reloadModelEntityAtAnchor(anchor: anchor)
         }
     }
+    
+    func session(_ session: ARSession, didUpdate anchors: [ARAnchor]) {
+        guard let imageAnchor = anchors.first as? ARImageAnchor,
+              let imageName = imageAnchor.referenceImage.name
+        else { return }
+        
+        print("session detect image : \(imageName)")
+        
+//        let anchor = AnchorEntity(anchor: imageAnchor)
+//
+//        // Add Model Entity to anchor
+//        anchor.addChild(model)
+//
+//        arView.scene.anchors.append(anchor)
+    }
 
     func sessionShouldAttemptRelocalization(_ session: ARSession) -> Bool {
         return true

@@ -17,21 +17,13 @@ class BoreArView: ARView {
     var delegate: BoreArViewDelegate?
     
     var defaultConfiguration: ARWorldTrackingConfiguration {
+        guard let referenceImages = ARReferenceImage.referenceImages(inGroupNamed: "AR Resources", bundle: nil) else {
+            fatalError("Missing expected asset catalog resources.")
+        }
+        
         let config = ARWorldTrackingConfiguration()
-        // 平面探测
-        config.planeDetection = [.horizontal]
-        // 环境纹理
-        config.environmentTexturing = .automatic
-        // 判断设备是否支持配置
-        if ARWorldTrackingConfiguration.supportsSceneReconstruction(.mesh) {
-            print("DDD: supportsSceneReconstruction")
-            config.sceneReconstruction = .mesh
-        }
-        // 深度检测
-        if type(of: config).supportsFrameSemantics(.sceneDepth) {
-            print("DDD: supportsFrameSemantics")
-            config.frameSemantics = .sceneDepth;
-        }
+        config.detectionImages = referenceImages
+        config.maximumNumberOfTrackedImages = 1
         return config
     }
     

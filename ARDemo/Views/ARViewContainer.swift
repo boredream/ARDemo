@@ -19,7 +19,6 @@ struct ARViewContainer: UIViewRepresentable {
     func makeUIView(context: Context) -> ARView {
         let arView = BoreArView(frame: .zero)
         arView.addCoaching()
-        arView.addFocusEntity()
         arView.setupGesture()
         arView.delegate = context.coordinator
         arView.modelData = modelData
