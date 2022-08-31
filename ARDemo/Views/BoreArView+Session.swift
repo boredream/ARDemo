@@ -24,17 +24,23 @@ extension BoreArView: ARSessionDelegate {
     
     func session(_ session: ARSession, didUpdate anchors: [ARAnchor]) {
         guard let imageAnchor = anchors.first as? ARImageAnchor,
-              let imageName = imageAnchor.referenceImage.name
+              let _ = imageAnchor.referenceImage.name
         else { return }
         
-        print("session detect image : \(imageName)")
+        if detectedImage {
+            return
+        }
         
-//        let anchor = AnchorEntity(anchor: imageAnchor)
-//
-//        // Add Model Entity to anchor
-//        anchor.addChild(model)
-//
-//        arView.scene.anchors.append(anchor)
+        print("add model")
+        let anchor = AnchorEntity(anchor: imageAnchor)
+        let entity = SignEntity(colorName: "orange")
+        let angle = -Float.pi / 4
+        entity.transform.rotation += simd_quatf(angle: angle, axis: SIMD3<Float>(1,0,0))
+//        entity.position.z += 0.02
+//        entity.position.y += 0.01
+        anchor.addChild(entity)
+        scene.anchors.append(anchor)
+        detectedImage = true
     }
 
     func sessionShouldAttemptRelocalization(_ session: ARSession) -> Bool {

@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "ar_image_anchor.jpeg",
+      "filename" : "ar-image.jpeg",
       "idiom" : "universal"
     }
   ],
@@ -10,6 +10,6 @@
     "version" : 1
   },
   "properties" : {
-    "width" : 0.070000000000000007
+    "width" : 0.050000000000000003
   }
 }
