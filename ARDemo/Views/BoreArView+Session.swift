@@ -31,15 +31,10 @@ extension BoreArView: ARSessionDelegate {
             return
         }
         
-        print("add model")
-        let anchor = AnchorEntity(anchor: imageAnchor)
-        let entity = SignEntity(colorName: "orange")
-        let angle = -Float.pi / 4
-        entity.transform.rotation += simd_quatf(angle: angle, axis: SIMD3<Float>(1,0,0))
-//        entity.position.z += 0.02
-//        entity.position.y += 0.01
-        anchor.addChild(entity)
-        scene.anchors.append(anchor)
+        // 重新设置WorldOrigin
+        session.setWorldOrigin(relativeTransform: imageAnchor.transform)
+        print("DDD: success detectedImage \(imageAnchor.transform)")
+        
         detectedImage = true
     }
 

@@ -33,7 +33,8 @@ struct ARViewContainer: UIViewRepresentable {
         }
         
         if saved {
-            arView.saveWorldMap()
+            // TODO: 清空已探测的图片
+            arView.detectedImage = false
             DispatchQueue.main.async {
                 saved = false
             }
