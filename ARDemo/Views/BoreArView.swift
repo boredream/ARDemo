@@ -49,12 +49,22 @@ class BoreArView: ARView {
         fatalError("init(coder:) has not been implemented")
     }
     
+//    func addModelEntity(_ model: SignModel) {
+//        guard let modelEntity = model.modelEntity else {
+//            return
+//        }
+//        // MARK: - 不是非要在平面上添加锚点
+//        let anchorEntity = AnchorEntity(plane: .any)
+//        anchorEntity.addChild(modelEntity)
+//        scene.addAnchor(anchorEntity)
+//    }
+    
     func addModelEntity(_ model: SignModel) {
         guard let modelEntity = model.modelEntity else {
             return
         }
-        // MARK: - 不是非要在平面上添加锚点
-        let anchorEntity = AnchorEntity(plane: .any)
+        let anchorEntity = AnchorEntity(world: cameraTransform.matrix)
+        modelEntity.position.z -= 0.5
         anchorEntity.addChild(modelEntity)
         scene.addAnchor(anchorEntity)
     }

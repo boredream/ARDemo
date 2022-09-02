@@ -10,6 +10,7 @@ import Foundation
 import Foundation
 import RealityKit
 import ARKit
+import SwiftUI
 
 extension BoreArView: ARSessionDelegate {
     
@@ -32,6 +33,7 @@ extension BoreArView: ARSessionDelegate {
         }
         
         // 重新设置WorldOrigin
+        // TODO - 保持y纵向
         session.setWorldOrigin(relativeTransform: imageAnchor.transform)
         print("DDD: success detectedImage \(imageAnchor.transform)")
         

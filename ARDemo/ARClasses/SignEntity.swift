@@ -13,10 +13,7 @@ class SignEntity: Entity, HasModel, HasCollision {
     init(colorName: String) {
         super.init()
         
-//        let mesh = MeshResource.generateBox(size: [0.01, 0.01, 0.01])
-        let mesh = MeshResource.generateText("考拉在此！",
-                                             extrusionDepth: 0.001,
-                                             font: .init(name: "Helvetica", size: 0.02)!)
+        let mesh = MeshResource.generateBox(size: [0.1, 0.1, 0.1])
         let color = ColorUtil.getColorByName(colorName)
         let material = SimpleMaterial(color: SimpleMaterial.Color(color), isMetallic: false)
         self.model = ModelComponent(mesh: mesh, materials: [material])
