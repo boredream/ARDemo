@@ -70,11 +70,13 @@ struct ARViewContainer: UIViewRepresentable {
                     modelEntity.update(model)
                 }
             } else if model.action == .startMove {
+                // 开始移动
                 if let modelEntity = model.modelEntity {
                     print("DDD: start move model = \(model.name)")
                     uiView.installGestures([.rotation, .translation], for: modelEntity)
                 }
             } else if model.action == .finishMove {
+                // 结束移动
                 print("DDD: finish move model = \(model.name)")
                 // 过滤tap点击事件，其它的都删除
                 uiView.gestureRecognizers?
