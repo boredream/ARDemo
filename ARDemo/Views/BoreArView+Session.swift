@@ -20,23 +20,19 @@ extension BoreArView: ARSessionDelegate {
            let model = modelData.selectModel,
            let entity = model.modelEntity {
             
-            let cameraEntity = AnchorEntity(world: frame.camera.transform)
-            scene.addAnchor(cameraEntity)
-            let distance = calculateDistance(from: cameraEntity, to: entity)
+            let position = SIMD3(frame.camera.transform.columns.3.x,
+                                 frame.camera.transform.columns.3.y,
+                                 frame.camera.transform.columns.3.z)
+            let distance = calculateDistance(from: position, to: entity.position(relativeTo: nil))
             print("session \(distance)")
-            scene.removeAnchor(cameraEntity)
         }
     }
     
-    func calculateDistance(from: Entity, to: Entity) -> Float{
-        let fromPosition = from.position(relativeTo: nil)
-        let toPosition = to.position(relativeTo: nil)
-        // print("from position = \(fromPosition)")
-        // print("to position = \(toPosition)")
+    func calculateDistance(from: SIMD3<Float>, to: SIMD3<Float>) -> Float{
         return sqrtf(
-            powf(fromPosition.x - toPosition.x, 2) +
-            powf(fromPosition.y - toPosition.y, 2) +
-            powf(fromPosition.z - toPosition.z, 2))
+            powf(from.x - to.x, 2) +
+            powf(from.y - to.y, 2) +
+            powf(from.z - to.z, 2))
     }
     
     // This is where we render virtual contents to scene.
