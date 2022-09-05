@@ -63,10 +63,22 @@ class BoreArView: ARView {
         guard let modelEntity = model.modelEntity else {
             return
         }
-        let anchorEntity = AnchorEntity(world: cameraTransform.matrix)
-        modelEntity.position.z -= 0.5
+        
+        // 使用当前摄像头的位置+角度，在z-0.5 即镜头正前方放置物体（基于世界坐标）
+        let cameraAnchorEntity = AnchorEntity(world: cameraTransform.matrix)
+        let positionPlaceHolerEntity = Entity()
+        positionPlaceHolerEntity.position.z -= 0.5
+        cameraAnchorEntity.addChild(positionPlaceHolerEntity)
+        scene.addAnchor(cameraAnchorEntity)
+        
+        // 但方向不希望随着camera，而是和世界保持一致
+        // 所以用目标物体位置重新创建一个（relativeTo: nil获取世界位置，默认获取相对parent位置）
+        // TODO: 是否有更好的方法？
+        let anchorEntity = AnchorEntity(world: positionPlaceHolerEntity.position(relativeTo: nil))
         anchorEntity.addChild(modelEntity)
         scene.addAnchor(anchorEntity)
+        
+        scene.removeAnchor(cameraAnchorEntity)
     }
     
     // 在锚点重载对象
