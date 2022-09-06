@@ -17,14 +17,16 @@ enum SignModelAction {
     case none
 }
 
-class SignModel: Hashable {
+class SignModel: NSObject, NSCoding {
     
     static func == (lhs: SignModel, rhs: SignModel) -> Bool {
         lhs.name == rhs.name
     }
     
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(name)
+    public override var hash: Int {
+      var hasher = Hasher()
+      hasher.combine(name)
+      return hasher.finalize()
     }
     
     var name: String
@@ -44,6 +46,17 @@ class SignModel: Hashable {
     
     convenience init(_ name: String) {
         self.init(name: name, colorName: "orange")
+    }
+    
+    func encode(with coder: NSCoder) {
+        coder.encode(self.name, forKey: "name")
+        coder.encode(self.colorName, forKey: "colorName")
+    }
+    
+    required convenience init?(coder: NSCoder) {
+        guard let name = coder.decodeObject(forKey: "name") as? String else { return nil }
+        guard let colorName = coder.decodeObject(forKey: "colorName") as? String else { return nil }
+        self.init(name: name, colorName: colorName)
     }
     
 }

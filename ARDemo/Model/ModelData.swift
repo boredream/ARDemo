@@ -16,7 +16,7 @@ final class ModelData: ObservableObject {
     private let dataKey = "ar.modellist"
     func saveTolocal() {
         do {
-            let data = try NSKeyedArchiver.archivedData(withRootObject: modelList, requiringSecureCoding: true)
+            let data = try NSKeyedArchiver.archivedData(withRootObject: modelList, requiringSecureCoding: false)
             UserDefaults.standard.set(data, forKey: self.dataKey)
             UserDefaults.standard.synchronize()
             print("DDD: success save model list to local = \(modelList.count)")

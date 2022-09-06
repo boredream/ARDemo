@@ -105,16 +105,4 @@ class BoreArView: ARView {
         }
     }
     
-    // MARK: - Persistence: Saving and Loading
-    let storedData = UserDefaults.standard
-    let mapKey = "ar.worldmap"
-
-    lazy var worldMapData: Data? = {
-        storedData.data(forKey: mapKey)
-    }()
-    
-    func resetTracking() {
-        self.session.run(defaultConfiguration, options: [.resetTracking, .removeExistingAnchors])
-    }
-    
 }

@@ -89,15 +89,17 @@ struct ARViewContainer: UIViewRepresentable {
                     model.hasAttachedInArView = true
                 } else if model.action == .delete {
                     modelData.selectModel = nil
+                    modelData.modelList.removeAll(where: { $0 === model })
                 }
                 model.action = .none
             }
         }
         
-        // 如果有数据变更，保存数据
+        // 如果有数据变更，保存
         if dataChanged {
             DispatchQueue.main.async {
                 modelData.saveTolocal()
+                arView.saveWorldMap()
             }
         }
         

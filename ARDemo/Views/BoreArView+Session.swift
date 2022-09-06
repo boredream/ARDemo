@@ -16,16 +16,16 @@ extension BoreArView: ARSessionDelegate {
     
     func session(_ session: ARSession, didUpdate frame: ARFrame) {
         // 计算镜头到物体的距离
-        if let modelData = modelData,
-           let model = modelData.selectModel,
-           let entity = model.modelEntity {
-            
-            let position = SIMD3(frame.camera.transform.columns.3.x,
-                                 frame.camera.transform.columns.3.y,
-                                 frame.camera.transform.columns.3.z)
-            let distance = calculateDistance(from: position, to: entity.position(relativeTo: nil))
-            print("session \(distance)")
-        }
+//        if let modelData = modelData,
+//           let model = modelData.selectModel,
+//           let entity = model.modelEntity {
+//            
+//            let position = SIMD3(frame.camera.transform.columns.3.x,
+//                                 frame.camera.transform.columns.3.y,
+//                                 frame.camera.transform.columns.3.z)
+//            let distance = calculateDistance(from: position, to: entity.position(relativeTo: nil))
+//            print("session \(distance)")
+//        }
     }
     
     func calculateDistance(from: SIMD3<Float>, to: SIMD3<Float>) -> Float{
@@ -59,7 +59,10 @@ extension BoreArView: ARSessionDelegate {
         print("DDD: success reload world origin to = \(imageAnchor.transform)")
         
         // 重新加载过世界中心后，需要载入持久化数据
-        loadWorldMap()
+        if let modelData = self.modelData {
+            modelData.loadFromLocal()
+        }
+//        loadWorldMap()
         
         hasReloadWorldOrigin = true
     }
