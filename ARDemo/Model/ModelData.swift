@@ -27,10 +27,10 @@ final class ModelData: ObservableObject {
     
     func loadFromLocal() {
         do {
-            let optData = UserDefaults.standard.data(forKey: dataKey)
-            guard
-                let data = optData, let modelList = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [SignModel] else {
-                fatalError("DDD: No ModelList in archive.")
+            guard let data = UserDefaults.standard.data(forKey: dataKey),
+                    let modelList = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [SignModel] else {
+                print("DDD: No ModelList in archive.")
+                return
             }
             self.modelList.removeAll()
             self.modelList += modelList

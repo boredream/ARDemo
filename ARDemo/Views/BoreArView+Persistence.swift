@@ -14,7 +14,8 @@ extension BoreArView {
     
     func loadWorldMap() {
         guard let data = UserDefaults.standard.object(forKey: "ar.worldmap") as? Data else {
-            fatalError("DDD: Map data should already be verified to exist before Load button is enabled.")
+            print("DDD: No World Map data in archive")
+            return
         }
         
         do {
@@ -43,7 +44,7 @@ extension BoreArView {
                 let data = try NSKeyedArchiver.archivedData(withRootObject: map, requiringSecureCoding: true)
                 UserDefaults.standard.set(data, forKey: "ar.worldmap")
                 UserDefaults.standard.synchronize()
-                print("DDD: success save world map \(map)")
+                print("DDD: success save world map \(map.anchors)")
             } catch {
                 fatalError("DDD: Can't save map: \(error.localizedDescription)")
             }

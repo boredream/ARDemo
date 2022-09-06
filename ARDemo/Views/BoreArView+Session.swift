@@ -65,6 +65,9 @@ extension BoreArView: ARSessionDelegate {
         
         hasLocateWorldOrigin = true
         delegate?.hasLocateWorldOrigin(located: hasLocateWorldOrigin)
+        
+        // 最后重载AR世界地图
+        loadWorldMap()
     }
 
     func sessionShouldAttemptRelocalization(_ session: ARSession) -> Bool {
