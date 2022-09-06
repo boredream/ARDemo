@@ -13,5 +13,32 @@ final class ModelData: ObservableObject {
     @Published var modelList: [SignModel] = []
     @Published var selectModel: SignModel?
     
+    private let dataKey = "ar.modellist"
+    func saveTolocal() {
+        do {
+            let data = try NSKeyedArchiver.archivedData(withRootObject: modelList, requiringSecureCoding: true)
+            UserDefaults.standard.set(data, forKey: self.dataKey)
+            UserDefaults.standard.synchronize()
+            print("DDD: success save model list to local = \(modelList.count)")
+        } catch {
+            fatalError("DDD: Can't save model list: \(error.localizedDescription)")
+        }
+    }
+    
+    func loadFromLocal() {
+        do {
+            let optData = UserDefaults.standard.data(forKey: dataKey)
+            guard
+                let data = optData, let modelList = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [SignModel] else {
+                fatalError("DDD: No ModelList in archive.")
+            }
+            self.modelList.removeAll()
+            self.modelList += modelList
+            print("DDD: success load model list \(modelList.count)")
+        } catch {
+            fatalError("DDD: Can't unarchive model list from file data: \(error)")
+        }
+    }
+    
 }
 

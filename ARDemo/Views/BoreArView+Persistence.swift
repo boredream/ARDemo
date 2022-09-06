@@ -32,6 +32,7 @@ extension BoreArView {
     }
     
     func saveWorldMap() {
+        // 每次保存数据，都要保存 ARWorld信息 + 自定义数据信息
         self.session.getCurrentWorldMap { worldMap, error in
             guard let map = worldMap else {
                 print("DDD: Can't get current world map")
@@ -39,7 +40,6 @@ extension BoreArView {
             }
             
             do {
-                // 保存世界信息，以及所有自定义数据信息
                 let data = try NSKeyedArchiver.archivedData(withRootObject: map, requiringSecureCoding: true)
                 self.storedData.set(data, forKey: self.mapKey)
                 self.storedData.synchronize()

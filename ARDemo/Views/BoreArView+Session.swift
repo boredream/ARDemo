@@ -49,16 +49,19 @@ extension BoreArView: ARSessionDelegate {
               let _ = imageAnchor.referenceImage.name
         else { return }
         
-        if detectedImage {
+        if hasReloadWorldOrigin {
             return
         }
         
         // 重新设置WorldOrigin
-        // TODO - 保持y纵向
+        // TODO: 保持y纵向
         session.setWorldOrigin(relativeTransform: imageAnchor.transform)
-        print("DDD: success detectedImage \(imageAnchor.transform)")
+        print("DDD: success reload world origin to = \(imageAnchor.transform)")
         
-        detectedImage = true
+        // 重新加载过世界中心后，需要载入持久化数据
+        loadWorldMap()
+        
+        hasReloadWorldOrigin = true
     }
 
     func sessionShouldAttemptRelocalization(_ session: ARSession) -> Bool {

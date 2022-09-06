@@ -13,7 +13,6 @@ struct ARViewContainer: UIViewRepresentable {
     
     @EnvironmentObject var modelData: ModelData
     @Binding var editStatus: EditStatus
-    @Binding var saved: Bool
     @Binding var loaded: Bool
     
     func makeUIView(context: Context) -> ARView {
@@ -32,23 +31,22 @@ struct ARViewContainer: UIViewRepresentable {
             return
         }
         
-        if saved {
-            // TODO: 清空已探测的图片
-            arView.detectedImage = false
-            DispatchQueue.main.async {
-                saved = false
-            }
-        }
-        
         if loaded {
+            // 开始加载
             arView.loadWorldMap()
             DispatchQueue.main.async {
                 loaded = false
             }
+            return
         }
         
         // 遍历所有model
+        var dataChanged = false
         for model in modelData.modelList {
+            if model.action != .none {
+                dataChanged = true
+            }
+            
             // 处理AR视图
             if model.action == .add {
                 // 找到未添加的，加入AR
@@ -95,6 +93,14 @@ struct ARViewContainer: UIViewRepresentable {
                 model.action = .none
             }
         }
+        
+        // 如果有数据变更，保存数据
+        if dataChanged {
+            DispatchQueue.main.async {
+                modelData.saveTolocal()
+            }
+        }
+        
     }
     
     func makeCoordinator() -> ARViewCoordinator {
