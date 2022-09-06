@@ -28,4 +28,10 @@ class ARViewCoordinator: NSObject, BoreArViewDelegate {
         }
     }
     
+    func hasLocateWorldOrigin(located: Bool) {
+        if located {
+            container.editStatus = .ar
+        }
+    }
+    
 }

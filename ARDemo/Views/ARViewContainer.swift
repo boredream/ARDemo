@@ -13,7 +13,6 @@ struct ARViewContainer: UIViewRepresentable {
     
     @EnvironmentObject var modelData: ModelData
     @Binding var editStatus: EditStatus
-    @Binding var loaded: Bool
     
     func makeUIView(context: Context) -> ARView {
         let arView = BoreArView(frame: .zero)
@@ -28,15 +27,6 @@ struct ARViewContainer: UIViewRepresentable {
         print("DDD: updateUIView")
         
         guard let arView = uiView as? BoreArView else {
-            return
-        }
-        
-        if loaded {
-            // 开始加载
-            arView.loadWorldMap()
-            DispatchQueue.main.async {
-                loaded = false
-            }
             return
         }
         

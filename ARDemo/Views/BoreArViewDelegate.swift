@@ -9,4 +9,6 @@ protocol BoreArViewDelegate {
     
     func onSignEntityTap(entity: SignEntity)
     
+    func hasLocateWorldOrigin(located: Bool)
+    
 }

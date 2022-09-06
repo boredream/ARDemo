@@ -10,6 +10,7 @@ import RealityKit
 import ARKit
 
 enum EditStatus {
+    case ready
     case ar
     case onModelSelect
     case onMove
@@ -18,13 +19,12 @@ enum EditStatus {
 struct ContentView : View {
     
     @EnvironmentObject var modelData: ModelData
-    @State var editStatus = EditStatus.ar
+    @State var editStatus = EditStatus.ready
     @State var showEditSheet = false
-    @State var loaded = false
     
     var body: some View {
         ZStack {
-            ARViewContainer(editStatus: $editStatus, loaded: $loaded)
+            ARViewContainer(editStatus: $editStatus)
             
             VStack {
                 if editStatus == EditStatus.onModelSelect {
@@ -84,16 +84,8 @@ struct ContentView : View {
                     
                     Spacer()
                     
-                } else {
-                    // 默认状态下，只显示添加按钮
-                    HStack(spacing: 50) {
-                        Button(action: {
-                            loaded = true
-                        }, label: {
-                            Text("加载")
-                        })
-                    }
-                    
+                } else if editStatus == EditStatus.ar {
+                    // ar 默认状态下，只显示添加按钮
                     Spacer()
                     
                     Button(action: {
@@ -103,6 +95,9 @@ struct ContentView : View {
                     }, label: {
                         Text("添加")
                     })
+                } else {
+                    // 准备状态下，引导用户图片探测，以定位世界中心
+                    // TODO: ready status 样式
                 }
             }
         }

@@ -15,8 +15,8 @@ class BoreArView: ARView {
     
     var modelData: ModelData?
     var delegate: BoreArViewDelegate?
-    // 已经按需重新加载过世界中心了
-    var hasReloadWorldOrigin = false
+    // 已经按定位世界中心了（图片探测）
+    var hasLocateWorldOrigin = false
     
     var defaultConfiguration: ARWorldTrackingConfiguration {
         guard let referenceImages = ARReferenceImage.referenceImages(inGroupNamed: "AR Resources", bundle: nil) else {
