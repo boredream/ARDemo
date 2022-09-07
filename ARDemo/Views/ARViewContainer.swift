@@ -66,6 +66,10 @@ struct ARViewContainer: UIViewRepresentable {
             } else if model.action == .finishMove {
                 // 结束移动
                 print("DDD: finish move model = \(model.name)")
+                // 更新下位置
+                if let modelEntity = model.modelEntity {
+                    model.modelEntityTransform = modelEntity.transformMatrix(relativeTo: nil)
+                }
                 // 过滤tap点击事件，其它的都删除
                 uiView.gestureRecognizers?
                     .filter { return !($0 is UITapGestureRecognizer) }
