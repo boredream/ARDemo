@@ -39,6 +39,15 @@ struct ARViewContainer: UIViewRepresentable {
                 dataChanged = true
             }
             
+            // 更新选中样式
+            if let modelEntity = model.modelEntity {
+                if let selectModel = modelData.selectModel {
+                    modelEntity.updateSelectState(selectModel === model)
+                } else {
+                    modelEntity.updateSelectState(false)
+                }
+            }
+            
             // 处理AR视图
             if model.action == .add {
                 // 找到未添加的，加入AR

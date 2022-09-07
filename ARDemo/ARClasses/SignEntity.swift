@@ -10,25 +10,27 @@ import SwiftUI
 
 class SignEntity: Entity, HasModel, HasCollision {
     
+    var selectCoverModelEntity: ModelEntity?
+    
     init(colorName: String) {
         super.init()
         
-        let mesh = MeshResource.generateBox(size: [0.1, 0.1, 0.1])
+        let mesh = MeshResource.generateSphere(radius: 0.05)
         let color = ColorUtil.getColorByName(colorName)
         let material = SimpleMaterial(color: SimpleMaterial.Color(color), isMetallic: false)
         self.model = ModelComponent(mesh: mesh, materials: [material])
         generateCollisionShapes(recursive: true)
         
-        // addIndicator()
+        initSelectCover()
     }
     
-    func addIndicator() {
-        // TODO: 添加选中等不同状态的样式
-        let mesh = MeshResource.generateBox(size: [0.15, 0.15, 0.15])
+    func initSelectCover() {
+        // 选中样式
+        let mesh = MeshResource.generateSphere(radius: 0.07)
         var material = SimpleMaterial()
-        material.baseColor = MaterialColorParameter.color(.init(red: 1.0, green: 0.0, blue: 0.0, alpha: 0.5))
-        let model = ModelEntity(mesh: mesh, materials: [material])
-        addChild(model)
+        material.baseColor = MaterialColorParameter.color(
+            .init(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.5))
+        selectCoverModelEntity = ModelEntity(mesh: mesh, materials: [material])
     }
     
     required init() {
@@ -40,6 +42,16 @@ class SignEntity: Entity, HasModel, HasCollision {
             let color = ColorUtil.getColorByName(newModel.colorName)
             let material = SimpleMaterial(color: SimpleMaterial.Color(color), isMetallic: false)
             self.model = ModelComponent(mesh: model.mesh, materials: [material])
+        }
+    }
+    
+    func updateSelectState(_ selected: Bool) {
+        if selected {
+            // 选中
+            addChild(selectCoverModelEntity!)
+        } else {
+            // 取消选中
+            removeChild(selectCoverModelEntity!)
         }
     }
 }

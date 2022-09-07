@@ -18,6 +18,11 @@ class ARViewCoordinator: NSObject, BoreArViewDelegate {
     }
     
     func onSignEntityTap(entity: SignEntity) {
+        if container.editStatus == .onMove {
+            // 如果是移动中，则禁止选择其他model
+            return
+        }
+        
         for model in container.modelData.modelList {
             if model.modelEntity === entity {
                 // 找到被点击的Model

@@ -27,6 +27,12 @@ extension BoreArView {
     }
     
     @objc func handlePan(_ sender: UIPanGestureRecognizer) {
+        if sender.state != .changed {
+            // changed为实际拖动回调，其它状态下都清空last位置信息
+            self.lastPanPoint = nil
+            return
+        }
+        
         guard let modelData = self.modelData,
               let selectModel = modelData.selectModel,
               let modelEntity = selectModel.modelEntity,
