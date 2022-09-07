@@ -76,43 +76,13 @@ class BoreArView: ARView {
         
         // 方向不希望随着camera，而是和世界保持一致
         // 所以用目标物体位置重新创建一个（relativeTo: nil获取世界位置，默认获取相对parent位置）
-        let worldPositionPlaceHolerEntity = AnchorEntity(world: positionPlaceHolerEntity.position(relativeTo: nil))
-        scene.addAnchor(worldPositionPlaceHolerEntity)
-        
-        // 然后创建个ARKit的anchor，以此为基准添加entity
-        let transform = worldPositionPlaceHolerEntity.transform.matrix
-        let anchor = ARAnchor(name: model.name, transform: transform)
-        let anchorEntity = AnchorEntity(anchor: anchor)
+        let anchorEntity = AnchorEntity(world: positionPlaceHolerEntity.position(relativeTo: nil))
         anchorEntity.addChild(modelEntity)
         scene.addAnchor(anchorEntity)
+        model.modelEntityTransform = anchorEntity.transformMatrix(relativeTo: nil)
         
         // 最后删除辅助entity
         scene.removeAnchor(cameraAnchorEntity)
-        scene.removeAnchor(worldPositionPlaceHolerEntity)
-    }
-    
-    // 在锚点重载对象
-    func reloadModelEntityAtAnchor(anchor: ARAnchor) {
-        // TODO: 首先要判断是否已经添加过了，普通add也会触发该回调 ?
-        print("DDD: reloadModelEntityAtAnchor \(anchor)")
-        guard let modelAnchor = anchor as? ARPlaneAnchor else {
-            // 筛选类型
-            return
-        }
-        
-        print("reloadModelEntityAtAnchor \(modelAnchor)")
-        
-        guard let modelData = self.modelData else {
-            return
-        }
-        
-        // MARK: - 如何把model和anchor匹配？
-        for model in modelData.modelList {
-            if model.name == modelAnchor.name {
-                print("match model \(model)")
-                break
-            }
-        }
     }
     
 }

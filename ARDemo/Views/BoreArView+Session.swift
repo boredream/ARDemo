@@ -39,9 +39,9 @@ extension BoreArView: ARSessionDelegate {
     // We add an anchor in `handleTap` function, it will then call this function.
     func session(_ session: ARSession, didAdd anchors: [ARAnchor]) {
         print("session didAdd anchors count = \(anchors.count)")
-        for anchor in anchors {
-            reloadModelEntityAtAnchor(anchor: anchor)
-        }
+//        for anchor in anchors {
+//            reloadModelEntityAtAnchor(anchor: anchor)
+//        }
     }
     
     func session(_ session: ARSession, didUpdate anchors: [ARAnchor]) {
@@ -61,13 +61,11 @@ extension BoreArView: ARSessionDelegate {
         // 重新加载过世界中心后，需要载入持久化数据
         if let modelData = self.modelData {
             modelData.loadFromLocal()
+            reloadAllModelEntity()
         }
         
         hasLocateWorldOrigin = true
         delegate?.hasLocateWorldOrigin(located: hasLocateWorldOrigin)
-        
-        // 最后重载AR世界地图
-        loadWorldMap()
     }
 
     func sessionShouldAttemptRelocalization(_ session: ARSession) -> Bool {

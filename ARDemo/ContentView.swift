@@ -98,6 +98,11 @@ struct ContentView : View {
                 } else {
                     // 准备状态下，引导用户图片探测，以定位世界中心
                     // TODO: ready status 样式
+                    Button(action: {
+                        modelData.clearLocalData()
+                    }, label: {
+                        Text("清空数据")
+                    })
                 }
             }
         }

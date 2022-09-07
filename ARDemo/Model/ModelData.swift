@@ -40,5 +40,12 @@ final class ModelData: ObservableObject {
         }
     }
     
+    func clearLocalData() {
+        self.modelList.removeAll()
+        UserDefaults.standard.removeObject(forKey: self.dataKey)
+        UserDefaults.standard.synchronize()
+        print("DDD: success clear local model list = \(modelList.count)")
+    }
+    
 }
 

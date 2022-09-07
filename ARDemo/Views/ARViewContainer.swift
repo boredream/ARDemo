@@ -89,7 +89,6 @@ struct ARViewContainer: UIViewRepresentable {
         if dataChanged {
             DispatchQueue.main.async {
                 modelData.saveTolocal()
-                arView.saveWorldMap()
             }
         }
         
