@@ -14,7 +14,8 @@ enum SignModelAction {
     case add
     case update
     case startMove
-    case finishMove
+    case cancelMove
+    case confirmMove
     case none
 }
 

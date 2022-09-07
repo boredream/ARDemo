@@ -26,10 +26,10 @@ class SignEntity: Entity, HasModel, HasCollision {
     
     func initSelectCover() {
         // 选中样式
-        let mesh = MeshResource.generateSphere(radius: 0.07)
+        let mesh = MeshResource.generateSphere(radius: 0.06)
         var material = SimpleMaterial()
         material.baseColor = MaterialColorParameter.color(
-            .init(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.5))
+            .init(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.3))
         selectCoverModelEntity = ModelEntity(mesh: mesh, materials: [material])
     }
     

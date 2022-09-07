@@ -71,11 +71,25 @@ struct ARViewContainer: UIViewRepresentable {
             } else if model.action == .startMove {
                 // 开始移动
                 if let modelEntity = model.modelEntity {
+                    // 记录之前位置
                     print("DDD: start move model = \(model.name)")
                     uiView.installGestures([.rotation, .translation], for: modelEntity)
                 }
-            } else if model.action == .finishMove {
-                // 结束移动
+            } else if model.action == .cancelMove {
+                // 取消移动
+                print("DDD: cancel move model = \(model.name)")
+                // 恢复到之前位置
+                if let modelEntity = model.modelEntity,
+                   let transform = model.modelEntityTransform{
+                    modelEntity.move(to: transform, relativeTo: nil)
+                }
+                // 过滤tap点击事件，其它的都删除
+                uiView.gestureRecognizers?
+                    .filter { return !($0 is UITapGestureRecognizer) }
+                    .forEach(uiView.removeGestureRecognizer)
+                
+            } else if model.action == .confirmMove {
+                // 确定移动
                 print("DDD: finish move model = \(model.name)")
                 // 更新下位置
                 if let modelEntity = model.modelEntity {
@@ -113,4 +127,7 @@ struct ARViewContainer: UIViewRepresentable {
         return ARViewCoordinator(self)
     }
 
+    // MARK: - Move
+    var startMoveTransform: float4x4?
+    
 }
