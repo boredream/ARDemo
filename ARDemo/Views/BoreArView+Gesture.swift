@@ -12,6 +12,7 @@ extension BoreArView {
 
     func setupGesture() {
         addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap(_:))))
+        addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handlePan(_:))))
     }
 
     @objc func handleTap(_ sender: UITapGestureRecognizer) {
@@ -23,6 +24,32 @@ extension BoreArView {
 
         delegate?.onSignEntityTap(entity: hitEntity)
         print("hitEntity \(hitEntity)")
+    }
+    
+    @objc func handlePan(_ sender: UIPanGestureRecognizer) {
+        guard let modelData = self.modelData,
+              let selectModel = modelData.selectModel,
+              let modelEntity = selectModel.modelEntity,
+              let editStatus = self.editStatus
+        else { return }
+        
+        if editStatus != .onMove {
+            return
+        }
+        
+        // 拖拽，只在选中移动模式生效，用于y轴移动
+        // 优先级低于installGesture，即touch down的时候未点击到model才会生效
+        let new = sender.translation(in: self)
+        if let last = self.lastPanPoint {
+            // 上一次有值，计算差值，进行移动
+            var dif = new.y - last.y
+            // gesture的坐标单位是像素密度，而ar里position单位是米，所以要进行转换
+            dif /= 500
+            modelEntity.position.y += Float(dif)
+            print("DDD: trans \(modelEntity.position)")
+        }
+        self.lastPanPoint = new
+        
     }
 
 }

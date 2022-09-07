@@ -7,6 +7,7 @@
 
 
 import RealityKit
+import RealityUI
 import FocusEntity
 import Combine
 import ARKit
@@ -15,6 +16,7 @@ class BoreArView: ARView {
     
     var modelData: ModelData?
     var delegate: BoreArViewDelegate?
+    var editStatus: EditStatus?
     // 已经按定位世界中心了（图片探测）
     var hasLocateWorldOrigin = false
     
@@ -73,6 +75,7 @@ class BoreArView: ARView {
         scene.addAnchor(cameraAnchorEntity)
         
         // TODO: 是否有更好的方法？通过matrix直接修改去修改rotate？
+        // https://stackoverflow.com/questions/68567122/position-object-in-front-of-camera-in-realitykit
         
         // 方向不希望随着camera，而是和世界保持一致
         // 所以用目标物体位置重新创建一个（relativeTo: nil获取世界位置，默认获取相对parent位置）
@@ -84,5 +87,8 @@ class BoreArView: ARView {
         // 最后删除辅助entity
         scene.removeAnchor(cameraAnchorEntity)
     }
+    
+    // MARK: - Gesture
+    var lastPanPoint: CGPoint?
     
 }

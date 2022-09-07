@@ -18,6 +18,17 @@ class SignEntity: Entity, HasModel, HasCollision {
         let material = SimpleMaterial(color: SimpleMaterial.Color(color), isMetallic: false)
         self.model = ModelComponent(mesh: mesh, materials: [material])
         generateCollisionShapes(recursive: true)
+        
+        // addIndicator()
+    }
+    
+    func addIndicator() {
+        // TODO: 添加选中等不同状态的样式
+        let mesh = MeshResource.generateBox(size: [0.15, 0.15, 0.15])
+        var material = SimpleMaterial()
+        material.baseColor = MaterialColorParameter.color(.init(red: 1.0, green: 0.0, blue: 0.0, alpha: 0.5))
+        let model = ModelEntity(mesh: mesh, materials: [material])
+        addChild(model)
     }
     
     required init() {

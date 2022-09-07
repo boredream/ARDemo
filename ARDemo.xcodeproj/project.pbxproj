@@ -13,6 +13,7 @@
 		2B1FE5112893E8350095457E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B1FE5102893E8350095457E /* Preview Assets.xcassets */; };
 		2B7BF461289A5BEC00633AB7 /* FocusEntity in Frameworks */ = {isa = PBXBuildFile; productRef = 2B7BF460289A5BEC00633AB7 /* FocusEntity */; };
 		2B8283D0289A14DE00C14B63 /* toy_drummer.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 2B8283CF289A14DE00C14B63 /* toy_drummer.usdz */; };
+		2B9B8F5B28C873C2000F3D8B /* RealityUI in Frameworks */ = {isa = PBXBuildFile; productRef = 2B9B8F5A28C873C2000F3D8B /* RealityUI */; };
 		2BADDB1F28B8BDAA008305D3 /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BADDB1E28B8BDAA008305D3 /* ModelData.swift */; };
 		2BAF555428B5D05A008DDC3C /* ARViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BAF555328B5D05A008DDC3C /* ARViewContainer.swift */; };
 		2BAF555628B5D0F4008DDC3C /* ARViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BAF555528B5D0F4008DDC3C /* ARViewCoordinator.swift */; };
@@ -64,6 +65,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B7BF461289A5BEC00633AB7 /* FocusEntity in Frameworks */,
+				2B9B8F5B28C873C2000F3D8B /* RealityUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -182,6 +184,7 @@
 			name = ARDemo;
 			packageProductDependencies = (
 				2B7BF460289A5BEC00633AB7 /* FocusEntity */,
+				2B9B8F5A28C873C2000F3D8B /* RealityUI */,
 			);
 			productName = ARDemo;
 			productReference = 2B1FE5042893E8320095457E /* ARDemo.app */;
@@ -212,6 +215,7 @@
 			mainGroup = 2B1FE4FB2893E8320095457E;
 			packageReferences = (
 				2B7BF45F289A5BEC00633AB7 /* XCRemoteSwiftPackageReference "FocusEntity" */,
+				2B9B8F5928C873C2000F3D8B /* XCRemoteSwiftPackageReference "RealityUI" */,
 			);
 			productRefGroup = 2B1FE5052893E8320095457E /* Products */;
 			projectDirPath = "";
@@ -454,6 +458,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		2B9B8F5928C873C2000F3D8B /* XCRemoteSwiftPackageReference "RealityUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/maxxfrazer/RealityUI/";
+			requirement = {
+				kind = exactVersion;
+				version = 1.2.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -461,6 +473,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2B7BF45F289A5BEC00633AB7 /* XCRemoteSwiftPackageReference "FocusEntity" */;
 			productName = FocusEntity;
+		};
+		2B9B8F5A28C873C2000F3D8B /* RealityUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2B9B8F5928C873C2000F3D8B /* XCRemoteSwiftPackageReference "RealityUI" */;
+			productName = RealityUI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

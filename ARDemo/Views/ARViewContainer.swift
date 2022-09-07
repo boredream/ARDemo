@@ -30,6 +30,8 @@ struct ARViewContainer: UIViewRepresentable {
             return
         }
         
+        arView.editStatus = editStatus
+        
         // 遍历所有model
         var dataChanged = false
         for model in modelData.modelList {

@@ -8,6 +8,15 @@
         "revision" : "a3363f33321843d49352bd0e3d99e66a6560665c",
         "version" : "2.2.6"
       }
+    },
+    {
+      "identity" : "realityui",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/maxxfrazer/RealityUI/",
+      "state" : {
+        "revision" : "06e0e801d0c245bcff8f2f5ef2f67c1127057a87",
+        "version" : "1.2.2"
+      }
     }
   ],
   "version" : 2
