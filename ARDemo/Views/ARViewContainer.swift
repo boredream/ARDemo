@@ -85,7 +85,7 @@ struct ARViewContainer: UIViewRepresentable {
                 }
                 // 过滤tap点击事件，其它的都删除
                 uiView.gestureRecognizers?
-                    .filter { return !($0 is UITapGestureRecognizer) }
+                    .filter { return $0 is EntityGestureRecognizer }
                     .forEach(uiView.removeGestureRecognizer)
                 
             } else if model.action == .confirmMove {
@@ -97,7 +97,7 @@ struct ARViewContainer: UIViewRepresentable {
                 }
                 // 过滤tap点击事件，其它的都删除
                 uiView.gestureRecognizers?
-                    .filter { return !($0 is UITapGestureRecognizer) }
+                    .filter { return $0 is EntityGestureRecognizer }
                     .forEach(uiView.removeGestureRecognizer)
             }
             

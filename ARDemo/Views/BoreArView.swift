@@ -75,7 +75,6 @@ class BoreArView: ARView {
         scene.addAnchor(cameraAnchorEntity)
         
         // TODO: 是否有更好的方法？通过matrix直接修改去修改rotate？
-        // https://stackoverflow.com/questions/68567122/position-object-in-front-of-camera-in-realitykit
         
         // 方向不希望随着camera，而是和世界保持一致
         // 所以用目标物体位置重新创建一个（relativeTo: nil获取世界位置，默认获取相对parent位置）

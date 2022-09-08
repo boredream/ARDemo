@@ -19,7 +19,7 @@ enum EditStatus {
 struct ContentView : View {
     
     @EnvironmentObject var modelData: ModelData
-    @State var editStatus = EditStatus.ready
+    @State var editStatus = EditStatus.ar
     @State var showEditSheet = false
     
     var body: some View {
@@ -75,10 +75,18 @@ struct ContentView : View {
                     HStack(spacing: 50) {
                         Button(action: {
                             // 取消移动后，恢复到选择模式
-                            modelData.selectModel?.action = SignModelAction.finishMove
+                            modelData.selectModel?.action = SignModelAction.cancelMove
                             editStatus = EditStatus.onModelSelect
                         }, label: {
-                            Text("取消")
+                            Text("取消移动")
+                        })
+                        
+                        Button(action: {
+                            // 取消移动后，恢复到选择模式
+                            modelData.selectModel?.action = SignModelAction.confirmMove
+                            editStatus = EditStatus.onModelSelect
+                        }, label: {
+                            Text("确定移动")
                         })
                     }
                     
