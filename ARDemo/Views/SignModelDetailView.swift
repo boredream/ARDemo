@@ -67,23 +67,36 @@ struct SignModelDetailView: View {
             Spacer().frame(height: 32)
             
             Text("物品清单")
-            
-            // TODO: 两种写法，上面的输入组件监听有问题，但删除有问题。下面的反过来
-            ForEach($goodsList, id: \.self) { data in
-//            ForEach(0..<goodsList.count, id: \.self) { index in
+
+            // TODO: 会引起一直update view ？
+            ForEach($modelData.goodsList, id: \.self) { data in
                 HStack {
                     TextField("请输入物品名称", text: data.name)
                     Button("删除") {
-                        // TODO: for循环里不能直接 remove at index ？
-                        if let index = goodsList.firstIndex(of: data.wrappedValue) {
-                            goodsList.remove(at: index)
+                        if let index = modelData.goodsList.firstIndex(of: data.wrappedValue) {
+                            modelData.goodsList.remove(at: index)
                         }
                     }
                 }.padding(8)
             }
             
+//            ForEach(modelData.goodsList.indices, id: \.self) { index in
+////                if !goodsList[index].isDelete {
+//                    HStack {
+//                        TextField("请输入物品名称", text: $modelData.goodsList[index].name)
+//                        Button("删除") {
+//                            // TODO: for循环里不能直接 remove at index ？会数组越界
+////                            modelData.goodsList.remove(at: index)
+////                            goodsList[index].isDelete = true
+//                            modelData.goodsList[index].name = "delete"
+//                            print("DDD: delete from sign goods list")
+//                        }
+//                    }.padding(8)
+////                }
+//            }
+            
             Button("新增") {
-                goodsList.append(SignGoods(name: ""))
+                modelData.goodsList.append(SignGoods(name: ""))
             }
         }
         .padding(16)

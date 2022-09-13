@@ -23,7 +23,7 @@ extension BoreArView {
         }
 
         delegate?.onSignEntityTap(entity: hitEntity)
-        print("hitEntity \(hitEntity)")
+        // print("hitEntity \(hitEntity)")
     }
     
     @objc func handlePan(_ sender: UIPanGestureRecognizer) {

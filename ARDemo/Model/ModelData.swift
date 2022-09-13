@@ -11,7 +11,12 @@ final class ModelData: ObservableObject {
     
     var colorNames = ["orange", "red", "green", "blue", "purple"]
     @Published var modelList: [SignModel] = []
-    @Published var selectModel: SignModel?
+    @Published var selectModel: SignModel? {
+        didSet {
+            print("select model")
+        }
+    }
+    @Published var goodsList: [SignGoods] = []
     
     private let dataKey = "ar.modellist"
     func saveTolocal() {

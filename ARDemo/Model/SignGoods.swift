@@ -9,10 +9,13 @@ import Foundation
 
 class SignGoods: Hashable {
     
+    var id = UUID()
     var name: String
+    var isDelete: Bool
     
     init(name: String) {
         self.name = name
+        self.isDelete = false
     }
     
     static func == (lhs: SignGoods, rhs: SignGoods) -> Bool {
@@ -20,7 +23,7 @@ class SignGoods: Hashable {
     }
     
     func hash(into hasher: inout Hasher) {
-        hasher.combine(name)
+        hasher.combine(id)
     }
 }
 
