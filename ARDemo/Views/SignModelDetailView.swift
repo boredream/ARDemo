@@ -18,7 +18,6 @@ struct SignModelDetailView: View {
     
     @State var colorName: String = ""
     @State var name: String = ""
-    @State var goodsList: [SignGoods] = []
     
     var body: some View {
         VStack {
@@ -34,6 +33,7 @@ struct SignModelDetailView: View {
                     modelData.selectModel?.name = self.name
                     modelData.selectModel?.colorName = self.colorName
                     modelData.selectModel?.action = .update
+                    modelData.selectModel?.goodsList = modelData.goodsList
                     // TODO: 如何提醒modelList更新？
                     modelData.modelList += []
                     showEditSheet = false
@@ -104,6 +104,7 @@ struct SignModelDetailView: View {
             if let signModel = modelData.selectModel {
                 self.colorName = signModel.colorName
                 self.name = signModel.name
+                self.modelData.goodsList = signModel.goodsList
             }
         })
     }

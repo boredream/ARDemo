@@ -66,7 +66,11 @@ struct ContentView : View {
                     // 显示物品信息
                     if let model = modelData.selectModel {
                         VStack(alignment: .leading) {
+                            HStack { }
                             Text("选中: \(model.name)")
+                            ForEach(model.goodsList, id: \.self) { data in
+                                Text(data.name)
+                            }
                         }
                         .padding(16)
                         .background(Color.gray)
