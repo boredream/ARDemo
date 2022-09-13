@@ -33,15 +33,19 @@ class SignModel: NSObject, NSCoding {
     
     var name: String
     var colorName: String
+    var goodsList: [SignGoods]
+
     var hasAttachedInArView: Bool
     var action: SignModelAction
     
     var modelEntity: SignEntity?
     var modelEntityTransform: float4x4?
     
-    init(name: String, colorName: String) {
+    init(name: String, colorName: String, goodsList: [SignGoods] = []) {
         self.name = name
         self.colorName = colorName
+        self.goodsList = goodsList
+        
         self.hasAttachedInArView = false
         self.action = SignModelAction.none
         self.modelEntity = SignEntity(colorName: colorName)

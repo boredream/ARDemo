@@ -43,7 +43,7 @@ struct ContentView : View {
                             Text("编辑")
                         })
                         .sheet(isPresented: $showEditSheet) {
-                            SignEditView(showEditSheet: $showEditSheet)
+                            SignModelDetailView(isEditMode: true, showEditSheet: $showEditSheet)
                         }
                         
                         Button(action: {
@@ -63,6 +63,7 @@ struct ContentView : View {
                     
                     Spacer()
                     
+                    // 显示物品信息
                     if let model = modelData.selectModel {
                         VStack(alignment: .leading) {
                             Text("选中: \(model.name)")
