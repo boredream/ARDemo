@@ -41,7 +41,7 @@ struct SignModelDetailView: View {
             }
             
             HStack {
-                ForEach(modelData.colorNames, id: \.self) { key in
+                ForEach(ModelData.colorNames, id: \.self) { key in
                     Button(action: {
                         colorName = key
                     }, label: {

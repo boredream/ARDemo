@@ -52,7 +52,7 @@ class SignModel: NSObject, NSCoding {
     }
     
     convenience init(_ name: String) {
-        self.init(name: name, colorName: "orange")
+        self.init(name: name, colorName: ModelData.colorNames.randomElement() ?? ModelData.colorNames[0])
     }
     
     func encode(with coder: NSCoder) {

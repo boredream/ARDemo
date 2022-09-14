@@ -9,7 +9,7 @@ import Foundation
 
 final class ModelData: ObservableObject {
     
-    var colorNames = ["orange", "red", "green", "blue", "purple"]
+    static var colorNames = ["orange", "red", "green", "blue", "purple"]
     @Published var modelList: [SignModel] = []
     @Published var selectModel: SignModel? {
         didSet {

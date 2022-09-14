@@ -85,9 +85,8 @@ class BoreArView: ARView {
         model.modelEntityTransform = anchorEntity.transformMatrix(relativeTo: nil)
         
         // 新增Pin https://github.com/maxxfrazer/RKPointPin
-        let rkPin = RKPointPin()
+        let rkPin = RKPointPin(color: SimpleMaterial.Color(ColorUtil.getColorByName(model.colorName)))
         rkPin.focusPercentage = 1
-        rkPin.tintColor = SimpleMaterial.Color(ColorUtil.getColorByName(model.colorName))
         addSubview(rkPin)
         rkPin.targetEntity = anchorEntity
         
