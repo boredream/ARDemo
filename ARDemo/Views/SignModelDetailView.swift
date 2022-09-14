@@ -19,8 +19,6 @@ struct SignModelDetailView: View {
     @State var colorName: String = ""
     @State var name: String = ""
     
-    @Binding var goodsList: [SignGoods]
-    
     var body: some View {
         VStack {
             HStack {
@@ -80,21 +78,6 @@ struct SignModelDetailView: View {
                         }
                     }
                 }.padding(8)
-            }
-            
-            ForEach(0..<goodsList.count, id: \.self) {index in
-                TextField("请输入物品名称", text: $goodsList[index].name)
-                Button("删除") {
-                    goodsList.remove(at: index)
-                }
-            }
-            
-            ForEach($goodsList, id: \.self) { data in
-//                TextField("请输入物品名称", text: data.name)
-            }
-            
-            Button("新增") {
-                modelData.goodsList.append(SignGoods(name: ""))
             }
         }
         .padding(16)
