@@ -17,7 +17,6 @@ class BoreArView: ARView {
     
     var modelData: ModelData?
     var delegate: BoreArViewDelegate?
-    var editStatus: EditStatus?
     // 已经按定位世界中心了（图片探测）
     var hasLocateWorldOrigin = false
     

@@ -18,7 +18,7 @@ class ARViewCoordinator: NSObject, BoreArViewDelegate {
     }
     
     func onSignEntityTap(entity: SignEntity) {
-        if container.editStatus == .onMove {
+        if container.modelData.editStatus == .onMove {
             // 如果是移动中，则禁止选择其他model
             return
         }
@@ -27,7 +27,7 @@ class ARViewCoordinator: NSObject, BoreArViewDelegate {
             if model.modelEntity === entity {
                 // 找到被点击的Model
                 container.modelData.selectModel = model
-                container.editStatus = EditStatus.onModelSelect
+                container.modelData.editStatus = EditStatus.onModelSelect
                 break;
             }
         }
@@ -35,7 +35,7 @@ class ARViewCoordinator: NSObject, BoreArViewDelegate {
     
     func hasLocateWorldOrigin(located: Bool) {
         if located {
-            container.editStatus = .ar
+            container.modelData.editStatus = .ar
         }
     }
     

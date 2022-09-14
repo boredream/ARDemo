@@ -12,7 +12,6 @@ import ARKit
 struct ARViewContainer: UIViewRepresentable {
     
     @EnvironmentObject var modelData: ModelData
-    @Binding var editStatus: EditStatus
     
     func makeUIView(context: Context) -> ARView {
         let arView = BoreArView(frame: .zero)
@@ -29,8 +28,6 @@ struct ARViewContainer: UIViewRepresentable {
         guard let arView = uiView as? BoreArView else {
             return
         }
-        
-        arView.editStatus = editStatus
         
         // 遍历所有model
         var dataChanged = false

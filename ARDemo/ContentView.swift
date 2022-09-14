@@ -19,20 +19,20 @@ enum EditStatus {
 struct ContentView : View {
     
     @EnvironmentObject var modelData: ModelData
-    @State var editStatus = EditStatus.ar
     @State var showEditSheet = false
+    @State var showSignListSheet = false
     
     var body: some View {
         ZStack {
-            ARViewContainer(editStatus: $editStatus)
+            ARViewContainer()
             
             VStack {
-                if editStatus == EditStatus.onModelSelect {
+                if modelData.editStatus == EditStatus.onModelSelect {
                     // 选中模型后，显示控制面板
                     HStack(spacing: 50) {
                         Button(action: {
                             modelData.selectModel = nil
-                            editStatus = EditStatus.ar
+                            modelData.editStatus = EditStatus.ar
                         }, label: {
                             Text("取消")
                         })
@@ -48,14 +48,14 @@ struct ContentView : View {
                         
                         Button(action: {
                             modelData.selectModel?.action = SignModelAction.startMove
-                            editStatus = EditStatus.onMove
+                            modelData.editStatus = EditStatus.onMove
                         }, label: {
                             Text("移动")
                         })
                         
                         Button(action: {
                             modelData.selectModel?.action = SignModelAction.delete
-                            editStatus = EditStatus.ar
+                            modelData.editStatus = EditStatus.ar
                         }, label: {
                             Text("删除")
                         })
@@ -75,13 +75,13 @@ struct ContentView : View {
                         .padding(16)
                         .background(Color.gray)
                     }
-                } else if editStatus == EditStatus.onMove {
+                } else if modelData.editStatus == EditStatus.onMove {
                     // 移动模式
                     HStack(spacing: 50) {
                         Button(action: {
                             // 取消移动后，恢复到选择模式
                             modelData.selectModel?.action = SignModelAction.cancelMove
-                            editStatus = EditStatus.onModelSelect
+                            modelData.editStatus = EditStatus.onModelSelect
                         }, label: {
                             Text("取消移动")
                         })
@@ -89,7 +89,7 @@ struct ContentView : View {
                         Button(action: {
                             // 取消移动后，恢复到选择模式
                             modelData.selectModel?.action = SignModelAction.confirmMove
-                            editStatus = EditStatus.onModelSelect
+                            modelData.editStatus = EditStatus.onModelSelect
                         }, label: {
                             Text("确定移动")
                         })
@@ -97,8 +97,15 @@ struct ContentView : View {
                     
                     Spacer()
                     
-                } else if editStatus == EditStatus.ar {
+                } else if modelData.editStatus == EditStatus.ar {
                     // ar 默认状态下，只显示添加按钮
+                    Button("标记列表") {
+                        showSignListSheet = true
+                    }
+                    .sheet(isPresented: $showSignListSheet) {
+                        SignModelListView(showSheet: $showSignListSheet)
+                    }
+                    
                     Spacer()
                     
                     Button(action: {

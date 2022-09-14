@@ -35,11 +35,10 @@ extension BoreArView {
         
         guard let modelData = self.modelData,
               let selectModel = modelData.selectModel,
-              let modelEntity = selectModel.modelEntity,
-              let editStatus = self.editStatus
+              let modelEntity = selectModel.modelEntity
         else { return }
         
-        if editStatus != .onMove {
+        if modelData.editStatus != .onMove {
             return
         }
         

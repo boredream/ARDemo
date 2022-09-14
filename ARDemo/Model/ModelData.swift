@@ -10,12 +10,10 @@ import Foundation
 final class ModelData: ObservableObject {
     
     static var colorNames = ["orange", "red", "green", "blue", "purple"]
+    
+    @Published var editStatus = EditStatus.ar
     @Published var modelList: [SignModel] = []
-    @Published var selectModel: SignModel? {
-        didSet {
-            print("select model")
-        }
-    }
+    @Published var selectModel: SignModel?
     @Published var goodsList: [SignGoods] = []
     
     private let dataKey = "ar.modellist"
