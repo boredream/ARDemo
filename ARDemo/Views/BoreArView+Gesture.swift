@@ -48,11 +48,11 @@ extension BoreArView {
         let new = sender.translation(in: self)
         if let last = self.lastPanPoint {
             // 上一次有值，计算差值，进行移动
-            var dif = new.y - last.y
+            var dif = last.y - new.y
             // gesture的坐标单位是像素密度，而ar里position单位是米，所以要进行转换
             dif /= 500
             modelEntity.position.y += Float(dif)
-            print("DDD: trans \(modelEntity.position)")
+            // print("DDD: trans \(modelEntity.position)")
         }
         self.lastPanPoint = new
         

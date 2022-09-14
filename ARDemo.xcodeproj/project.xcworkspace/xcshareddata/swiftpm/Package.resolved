@@ -17,6 +17,15 @@
         "revision" : "06e0e801d0c245bcff8f2f5ef2f67c1127057a87",
         "version" : "1.2.2"
       }
+    },
+    {
+      "identity" : "rkpointpin",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/maxxfrazer/RKPointPin",
+      "state" : {
+        "branch" : "master",
+        "revision" : "1f21466ea044057fc525655d71fee93267211a9c"
+      }
     }
   ],
   "version" : 2

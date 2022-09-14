@@ -16,6 +16,7 @@
 		2B7BF461289A5BEC00633AB7 /* FocusEntity in Frameworks */ = {isa = PBXBuildFile; productRef = 2B7BF460289A5BEC00633AB7 /* FocusEntity */; };
 		2B8283D0289A14DE00C14B63 /* toy_drummer.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 2B8283CF289A14DE00C14B63 /* toy_drummer.usdz */; };
 		2B9B8F5B28C873C2000F3D8B /* RealityUI in Frameworks */ = {isa = PBXBuildFile; productRef = 2B9B8F5A28C873C2000F3D8B /* RealityUI */; };
+		2BA41CA628D176300059FDA4 /* RKPointPin in Frameworks */ = {isa = PBXBuildFile; productRef = 2BA41CA528D176300059FDA4 /* RKPointPin */; };
 		2BADDB1F28B8BDAA008305D3 /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BADDB1E28B8BDAA008305D3 /* ModelData.swift */; };
 		2BAF555428B5D05A008DDC3C /* ARViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BAF555328B5D05A008DDC3C /* ARViewContainer.swift */; };
 		2BAF555628B5D0F4008DDC3C /* ARViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BAF555528B5D0F4008DDC3C /* ARViewCoordinator.swift */; };
@@ -67,6 +68,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B7BF461289A5BEC00633AB7 /* FocusEntity in Frameworks */,
+				2BA41CA628D176300059FDA4 /* RKPointPin in Frameworks */,
 				2B9B8F5B28C873C2000F3D8B /* RealityUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -188,6 +190,7 @@
 			packageProductDependencies = (
 				2B7BF460289A5BEC00633AB7 /* FocusEntity */,
 				2B9B8F5A28C873C2000F3D8B /* RealityUI */,
+				2BA41CA528D176300059FDA4 /* RKPointPin */,
 			);
 			productName = ARDemo;
 			productReference = 2B1FE5042893E8320095457E /* ARDemo.app */;
@@ -219,6 +222,7 @@
 			packageReferences = (
 				2B7BF45F289A5BEC00633AB7 /* XCRemoteSwiftPackageReference "FocusEntity" */,
 				2B9B8F5928C873C2000F3D8B /* XCRemoteSwiftPackageReference "RealityUI" */,
+				2BA41CA428D176300059FDA4 /* XCRemoteSwiftPackageReference "RKPointPin" */,
 			);
 			productRefGroup = 2B1FE5052893E8320095457E /* Products */;
 			projectDirPath = "";
@@ -470,6 +474,14 @@
 				version = 1.2.2;
 			};
 		};
+		2BA41CA428D176300059FDA4 /* XCRemoteSwiftPackageReference "RKPointPin" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/maxxfrazer/RKPointPin";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -482,6 +494,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2B9B8F5928C873C2000F3D8B /* XCRemoteSwiftPackageReference "RealityUI" */;
 			productName = RealityUI;
+		};
+		2BA41CA528D176300059FDA4 /* RKPointPin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2BA41CA428D176300059FDA4 /* XCRemoteSwiftPackageReference "RKPointPin" */;
+			productName = RKPointPin;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

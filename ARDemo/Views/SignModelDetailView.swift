@@ -19,6 +19,8 @@ struct SignModelDetailView: View {
     @State var colorName: String = ""
     @State var name: String = ""
     
+    @Binding var goodsList: [SignGoods]
+    
     var body: some View {
         VStack {
             HStack {
@@ -80,20 +82,16 @@ struct SignModelDetailView: View {
                 }.padding(8)
             }
             
-//            ForEach(modelData.goodsList.indices, id: \.self) { index in
-////                if !goodsList[index].isDelete {
-//                    HStack {
-//                        TextField("请输入物品名称", text: $modelData.goodsList[index].name)
-//                        Button("删除") {
-//                            // TODO: for循环里不能直接 remove at index ？会数组越界
-////                            modelData.goodsList.remove(at: index)
-////                            goodsList[index].isDelete = true
-//                            modelData.goodsList[index].name = "delete"
-//                            print("DDD: delete from sign goods list")
-//                        }
-//                    }.padding(8)
-////                }
-//            }
+            ForEach(0..<goodsList.count, id: \.self) {index in
+                TextField("请输入物品名称", text: $goodsList[index].name)
+                Button("删除") {
+                    goodsList.remove(at: index)
+                }
+            }
+            
+            ForEach($goodsList, id: \.self) { data in
+//                TextField("请输入物品名称", text: data.name)
+            }
             
             Button("新增") {
                 modelData.goodsList.append(SignGoods(name: ""))

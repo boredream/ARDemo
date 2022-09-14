@@ -11,6 +11,7 @@ import RealityUI
 import FocusEntity
 import Combine
 import ARKit
+import RKPointPin
 
 class BoreArView: ARView {
     
@@ -82,6 +83,13 @@ class BoreArView: ARView {
         anchorEntity.addChild(modelEntity)
         scene.addAnchor(anchorEntity)
         model.modelEntityTransform = anchorEntity.transformMatrix(relativeTo: nil)
+        
+        // 新增Pin https://github.com/maxxfrazer/RKPointPin
+        let rkPin = RKPointPin()
+        rkPin.focusPercentage = 1
+        rkPin.tintColor = SimpleMaterial.Color(ColorUtil.getColorByName(model.colorName))
+        addSubview(rkPin)
+        rkPin.targetEntity = anchorEntity
         
         // 最后删除辅助entity
         scene.removeAnchor(cameraAnchorEntity)
