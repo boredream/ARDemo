@@ -79,15 +79,10 @@ class BoreArView: ARView {
         // 方向不希望随着camera，而是和世界保持一致
         // 所以用目标物体位置重新创建一个（relativeTo: nil获取世界位置，默认获取相对parent位置）
         let anchorEntity = AnchorEntity(world: positionPlaceHolerEntity.position(relativeTo: nil))
+        modelEntity.arView = self
         anchorEntity.addChild(modelEntity)
         scene.addAnchor(anchorEntity)
         model.modelEntityTransform = anchorEntity.transformMatrix(relativeTo: nil)
-        
-        // 新增Pin https://github.com/maxxfrazer/RKPointPin
-        let rkPin = RKPointPin(color: SimpleMaterial.Color(ColorUtil.getColorByName(model.colorName)))
-        rkPin.focusPercentage = 1
-        addSubview(rkPin)
-        rkPin.targetEntity = anchorEntity
         
         // 最后删除辅助entity
         scene.removeAnchor(cameraAnchorEntity)

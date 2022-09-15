@@ -57,6 +57,8 @@ struct ARViewContainer: UIViewRepresentable {
                 if let modelEntity = model.modelEntity, let anchor = modelEntity.parent as? AnchorEntity {
                     // 先找到 entity，然后找到anchor，删除之
                     print("DDD: delete model = \(model.name)")
+                    // TODO: 无需手动？
+                    modelEntity.deletePinView()
                     uiView.scene.removeAnchor(anchor)
                 }
             } else if model.action == .update {
