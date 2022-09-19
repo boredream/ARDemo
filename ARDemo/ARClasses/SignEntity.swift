@@ -9,7 +9,7 @@ import RealityKit
 import SwiftUI
 import RKPointPin
 
-class SignEntity: Entity, HasModel, HasCollision {
+class SignEntity: Entity, HasModel, HasCollision, HasAnchoring {
     
     var selectCoverModelEntity: ModelEntity?
     var color: Color
